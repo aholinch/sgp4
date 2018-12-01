@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>SGP4 in Javascript</title>
+<script src="sgp4.js">
+</script>
+<script src="../../data/sgp4-ver.jsonp">
+</script>
+<script src="../../data/sgp4-ver.out.jsonp">
+</script>
+<script src="testsgp4.js">
+</script>
+
+</head>
+<body>
+<h1>SGP4 JavaScript Test</h1>
+<p>
+The testsgp4.js script will run through the full suite of test cases when the verify() method is called.  The error statistics for that are reported below.  You can view the source HTML for this page to see that the innerHTML for the two span elements are being populated by calls to the code.
+</p>
+<p>
+<span id="testerrs"></span>
+</p>
+<p>
+An example test case is below.  The two line element set for a specific object at a specific epoch is given.  The known x,y,z postion and velocity components are given for a specific time after epoch.  In this case it is 0 minutes, or at epoch.  The sgp4 code is then called to compute the r and v vectors.
+<pre>
+1 00005U 58002B   00179.78495062  .00000023  00000-0  28098-4 0  4753
+2 00005  34.2682 348.7242 1859667 331.7664  19.3264 10.82419157413667
+</pre>
+
+<pre>
+   x                 y               z
+7022.46529266    -1400.08296755      0.03995155
+   1.893841015       6.405893759     4.534807250
+</pre>
+</p>
+<p>
+The computed values are below.
+<span id="testRV"></span>
+</p>
+<script>
+
+var rr = 1e6*rerr;
+var vv = 1e6*verr;
+
+var str = "Typical errors r = "+rr+" mm, v = "+vv+" mm/s";
+document.getElementById("testerrs").innerHTML = str;
+
+var line1 = "1 00005U 58002B   00179.78495062  .00000023  00000-0  28098-4 0  4753";
+var line2 = "2 00005  34.2682 348.7242 1859667 331.7664  19.3264 10.82419157413667";
+
+var tle = new TLE(line1,line2);
+var rv = tle.getRV(0);
+//console.log(rv);
+//console.log(tle.getElsetRec().jdsatepoch + "\t"+tle.getElsetRec().jdsatepochF);
+
+var ol1 = rv[0][0]+"    "+rv[0][1]+"      " +rv[0][2];
+var ol2 = rv[1][0]+"       "+rv[1][1]+"    " +rv[1][2];
+
+var html = "<pre>\n"+ol1+"\n"+ol2+"\n</pre>";
+var span = document.getElementById("testRV");
+span.innerHTML=html;
+</script>
+</body>
+</html>

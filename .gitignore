@@ -1,0 +1,8 @@
+*.pyc
+__pycache__
+*.class
+.RHistory
+.Rhistory
+src/java/sgp4
+src/c/testsgp4
+
