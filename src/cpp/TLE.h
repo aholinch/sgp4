@@ -27,6 +27,11 @@ class TLE
 
 
   public:
+
+    TLE();
+
+    TLE(char *line1, char *line2);
+
     void parseLines(char *line1, char *line2);
 
     void getRVForDate(long millisSince1970, double r[3], double v[3]);

@@ -150,5 +150,6 @@ int main(void)
     runVER(verins,cnt);
 
     free(verins);
+
     return 0;
 }

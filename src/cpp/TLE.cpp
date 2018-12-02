@@ -15,6 +15,15 @@ void setValsToRec(TLE *tle, ElsetRec *rec);
 
 long parseEpoch(ElsetRec *rec, char *str);
 
+TLE::TLE()
+{
+}
+
+TLE::TLE(char *line1, char *line2)
+{
+    parseLines(line1,line2);
+}
+
 void TLE::parseLines(char *line1, char *line2)
 {
     int i=0;
