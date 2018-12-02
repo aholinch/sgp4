@@ -1,5 +1,10 @@
-# sgp4
-SGP4 implementations in multiple languages
+# SGP4
+SGP4 stands for Simplified General Perturbations 4 and is arguably the most widely used propagator for simulating earth satellite orbits.
+This module is my personal project to produce implementations in multiple languages.  There is an official government document released decades
+ago that describes the theory and the software.  That document is known as Spacetrack Report #3.  In 2006 researchers at the Center for Space
+Standards and Innovation (CSSI) published a detailed study of the algorithm and more modern software implementations.  In addition to the paper they also
+released the software.  Most importantly they produced an extensive set of test cases that cover multiple orbit regimes, potential singularities, and other
+tricky orbits.
 
 # License
 This code is released under an unlicense.  Do what you want with it completely at your own risk.  It is based on code released by the Center for Space Standards & Innovation (CSSI).  Their code is based on a US Government standard.  No liability and no warranty are offered.
@@ -9,6 +14,15 @@ This code is released under an unlicense.  Do what you want with it completely a
 gcc -o testsgp4 SGP4.c TLE.c TestSGP4.c -lm
 ./testsgp4
 Typical errors r=6.722191e-03 mm, v=4.812040e-04 mm/s
+
+# C++
+g++ -o testsgp4 TestSGP4.cpp TLE.cpp SGP4.c
+Typical errors r=6.722191e-03 mm, v=4.812040e-04 mm/s
+
+# C#
+dotnet run
+
+Typical errors	r=0.00672218292027499 mm	v=0.00481204064816902 mm/s
 
 # Java
 

@@ -5,4 +5,7 @@ __pycache__
 .Rhistory
 src/java/sgp4
 src/c/testsgp4
-
+*.mod
+src/cpp/testsgp4
+src/charp/obj
+src/charp/bin
