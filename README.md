@@ -17,12 +17,19 @@ Typical errors r=6.722191e-03 mm, v=4.812040e-04 mm/s
 
 # C++
 g++ -o testsgp4 TestSGP4.cpp TLE.cpp SGP4.c
+
 Typical errors r=6.722191e-03 mm, v=4.812040e-04 mm/s
 
 # C#
 dotnet run
 
 Typical errors	r=0.00672218292027499 mm	v=0.00481204064816902 mm/s
+
+# FORTRAN 90
+I'm a bit proud of this port myself.  I've been seeing SGP4 in FORTRAN for decades now.  However, all the other versions I've seen were using COMMON data blocks.  By porting the code from C to FORTRAN 90, I was able to organize the code in modules and take advantage of custom data types, ElsetRec and TLE.  Now others can include these modules in their code without having to have the common block.
+gfortran ElsetRec.f90 SGP4.f90 TLE.f90 TestSGP4.f90  -o testsgp4
+
+Typical errors r=   6.7121279555256517E-003  mm, v=   4.8048366357605730E-004  mm/s
 
 # Java
 
@@ -34,7 +41,7 @@ Typical errors	r=0.006722149979022173 mm	v=4.812041812093286E-4 mm/s
 # JavaScript
 In the js directory open sgp4.html in a browser to view the results.  Calling javascript from the cli, you can run testsgp4.js which will call the verify() method.
 
-Typical errors r = 4.483598307712105 mm, v = 0.3209631274698461 mm/s
+Typical errors r = 0.006722036443346485 mm, v = 0.00048120408916018905 mm/s
 
 # Matlab/Octave
 The code has been tested with Matlab 7.9.1

@@ -149,6 +149,9 @@ function verify()
             lastv = ve2.v;
         }
     }   
+
+    rerr/=cnt;
+    verr/=cnt;
     
     console.log("Typical errors\tr="+(1e6*rerr)+" mm\tv="+(1e6*verr)+" mm/s");
 
