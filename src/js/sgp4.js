@@ -2242,7 +2242,7 @@ class TLE
     getRVForDate(d)
     {
         var t = d.getTime();
-        t -= epoch.getTime();
+        t -= this.epoch.getTime();
         t/=60000;
         
         return this.getRV(t);
