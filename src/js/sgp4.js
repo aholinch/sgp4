@@ -2587,7 +2587,61 @@ class TLE
         this.rec.jdsatepoch = jd[0];
         this.rec.jdsatepochF = jd[1];
 
-        var str = year+"-"+mon+"-"+day+"T"+hr+":"+mn+":"+sec+"Z";
+        // this worked nicely in Firefox, but Chrome was very picky about date format
+        // needs to have leading 0s
+        //var str = year+"-"+mon+"-"+day+"T"+hr+":"+mn+":"+sec+"Z";
+        var str = year +"-";
+        if(mon >9)
+        {
+            str += mon;
+        }
+        else
+        {
+            str += "0"+mon;
+        }
+
+        str += "-";
+        if(day > 9)
+        {
+            str += day;
+        }
+        else
+        {
+            str += "0"+day;
+        }
+
+        str += "T";
+        if(hr > 9)
+        {
+            str += hr;
+        }
+        else
+        {
+            str += "0"+hr;
+        }
+
+        str += ":";
+        if(mn > 9)
+        {
+            str += mn;
+        }
+        else
+        {
+            str += "0"+mn;
+        }
+
+        str += ":";
+        if(sec > 9)
+        {
+            str += sec;
+        }
+        else
+        {
+            str += "0"+sec;
+        }
+
+        str += "Z"; // UTC
+        console.log(str);
         var d = new Date(str);
         
         return d;
