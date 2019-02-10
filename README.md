@@ -79,7 +79,7 @@ Typical errors r=2.852996E-03 mm   v=4.277355E-06 mm/s
 
 
 # Ruby
-The Ruby version was ported from the Python version to run the code go to the ruby directory and type:
+The Ruby version was ported from the Python version. To run the code go to the ruby directory and type:
 
 ruby TestSGP4.rb
 
