@@ -1,3 +1,4 @@
+require "date"
 require_relative "ElsetRec.rb"
 require_relative "SGP4.rb"
 
@@ -56,19 +57,18 @@ class TLE
   
   # calcualte RV for date represented as milliseconds since 19700101
   def getRVForDate(t)
-    t -= self.epoch
-    t/=60000
-      
-    return self.getRV(t)
+    diff = (t-@epoch).to_f
+    diff *= 1440.0  
+    return getRV(diff)
   end
 
   def getRV(minutesAfterEpoch)
     r = [0,0,0]
     v = [0,0,0]
       
-    self.rec.error = 0
-    SGP4.sgp4(self.rec, minutesAfterEpoch, r, v)
-    self.sgp4Error = self.rec.error
+    @rec.error = 0
+    SGP4.sgp4(@rec, minutesAfterEpoch, r, v)
+    @sgp4Error = @rec.error
     return [r,v]
   end
 
@@ -188,7 +188,7 @@ class TLE
     mon+=1
     day = doy
 
-    ep = Time.utc(year,mon,day,hr,mn,sec)
+    ep = DateTime.new(year,mon,day,hr,mn,sec,0)
 
     jd = SGP4.jday(year, mon, day, hr, mn, sec)
     @rec.jdsatepoch = jd[0]
