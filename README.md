@@ -77,3 +77,10 @@ If you run RStudio from the r directory, call source('TestSGP4.R') to run the te
 
 Typical errors r=2.852996E-03 mm   v=4.277355E-06 mm/s
 
+
+#Ruby
+The Ruby version was ported from the Python version to run the code go to the ruby directory and type:
+
+ruby TestSGP4.rb
+
+Typical Errors 0.006722191115878764 mm, 0.0004812040288887651 mm/s
