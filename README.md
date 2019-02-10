@@ -9,10 +9,15 @@ tricky orbits.
 # License
 This code is released under an unlicense.  Do what you want with it completely at your own risk.  It is based on code released by the Center for Space Standards & Innovation ([CSSI](http://www.centerforspace.com/)).  Their [code](http://www.centerforspace.com/downloads/) is based on a US Government standard.  No liability and no warranty are offered.
 
+# Overview
+The astrodynamics calculations are all implemented as static functions in the SGP4 class/module.  The ElsetRec datastructure is used to maintain initialization state across those methods.  For convenience, I have implemented the TLE class.  The constructor accepts the two lines of the the two-line element set as arguments.  To then propagate (simulate) the orbit, I have implemented a few getRV methods in each language.  One will accept the number of minutes since the epoch as an argument.  In most languages, I've also implemented a version of getRV that accepts a Date or DateTime object to simulate the orbit at a specific point in time.  Sometimes, if I didn't find a helper class in the target language that I liked, I simply used the number of milliseconds since January 1, 1970 as the argument.
+
 # C
 
 gcc -o testsgp4 SGP4.c TLE.c TestSGP4.c -lm
+
 ./testsgp4
+
 Typical errors r=6.722191e-03 mm, v=4.812040e-04 mm/s
 
 # C++
@@ -27,6 +32,7 @@ Typical errors	r=0.00672218292027499 mm	v=0.00481204064816902 mm/s
 
 # FORTRAN 90
 I'm a bit proud of this port myself.  I've been seeing SGP4 in FORTRAN for decades now.  However, all the other versions I've seen were using COMMON data blocks.  By porting the code from C to FORTRAN 90, I was able to organize the code in modules and take advantage of custom data types, ElsetRec and TLE.  Now others can include these modules in their code without having to have the common block.
+
 gfortran ElsetRec.f90 SGP4.f90 TLE.f90 TestSGP4.f90  -o testsgp4
 
 Typical errors r=   6.7121279555256517E-003  mm, v=   4.8048366357605730E-004  mm/s
@@ -34,6 +40,7 @@ Typical errors r=   6.7121279555256517E-003  mm, v=   4.8048366357605730E-004  m
 # Java
 
 javac -d . *.java
+
 java -classpath . sgp4.TestSGP4
 
 Typical errors	r=0.006722149979022173 mm	v=4.812041812093286E-4 mm/s
