@@ -50,8 +50,19 @@ In the js directory open sgp4.html in a browser to view the results.  Calling ja
 
 Typical errors r = 0.006722036443346485 mm, v = 0.00048120408916018905 mm/s
 
+# LibreOffice Basic
+The first implementation of SGP4 I ever wrote was in VBA in Excel.  I did the implementation by converting a printout of the SpaceTrack Report #3 FORTRAN code to VBA as I typed it in.  I don't have Excel on my dev laptop, so I ported the C version of code to LibreOffice Basic. Very little documentation for this language exists (compared to other languages).  I was able to implement a set of macros in a Calc spreadsheet.  Most users will want to use the parseLines and getRV macros in the TLE module.  To verify the code with the standard test cases run the Main macro in the TestSGP4 module.  The velocity errors are similar to other languages.  However the position errors are about five times greater.  I'm not sure why that is, but many of the data types in Basic have a limited restriction compared to the other languages.
+
+Typical errors	
+
+3.33434E-02	mm
+
+4.80742E-04	mm/s
+
+
 # Matlab/Octave
 The code has been tested with Matlab 7.9.1
+
 ans =
 Typical errors r=6.721676E-03 mm        v=4.812042E-04 mm/s
 
