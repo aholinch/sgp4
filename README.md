@@ -20,7 +20,7 @@ The astrodynamics calculations are all implemented as static functions in the SG
 * [Java](#java)
 * [JavaScript](#javascript)
 * [LibreOffice Basic](#libreoffice-basic)
-* [Matlab/Octave](#matlab/octave)
+* [Matlab/Octave](#matlaboctave)
 * [Python 2/3](#python)
 * [R](#r)
 * [Ruby](#ruby)
