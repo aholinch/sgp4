@@ -14,13 +14,13 @@ The astrodynamics calculations are all implemented as static functions in the SG
 
 # Languages
 * [C](#c)
-* [C++](#c++)
-* [C#](#c#)
+* [C++](#c-1)
+* [C#](#c-2)
 * [FORTRAN 90](#fortran-90)
 * [Java](#java)
 * [JavaScript](#javascript)
 * [LibreOffice Basic](#libreoffice-basic)
-* [Matlab/Octave](#matlabe/octave)
+* [Matlab/Octave](#matlab/octave)
 * [Python 2/3](#python)
 * [R](#r)
 * [Ruby](#ruby)
