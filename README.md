@@ -74,6 +74,7 @@ ans = Typical errors r=6.722191E-03 mm	v=4.812040E-04 mm/s
 # Python
 The SGP4 and TLE code works in both Python 2 and Python 3.  The TestSGP4 code should also work in both versions and has a dependency on the standard json package. Simply execute your preferred version of python from the python src directory.
 
+python2 TestSGP4.py
 
 Typical Errors
 0.00651341005177
@@ -81,6 +82,7 @@ mm
 0.000481251231334
 mm/s
 
+python3 TestSGP4.py
 
 Typical Errors
 0.006513410051766991
