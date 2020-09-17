@@ -13,14 +13,14 @@ This code is released under an unlicense.  Do what you want with it completely a
 The astrodynamics calculations are all implemented as static functions in the SGP4 class/module.  The ElsetRec datastructure is used to maintain initialization state across those methods.  For convenience, I have implemented the TLE class.  The constructor accepts the two lines of the the two-line element set as arguments.  To then propagate (simulate) the orbit, I have implemented a few getRV methods in each language.  One will accept the number of minutes since the epoch as an argument.  In most languages, I've also implemented a version of getRV that accepts a Date or DateTime object to simulate the orbit at a specific point in time.  Sometimes, if I didn't find a helper class in the target language that I liked, I simply used the number of milliseconds since January 1, 1970 as the argument.
 
 # Languages
-* C
-* C++
-* C#
-* FORTRAN 90
-* Java
-* JavaScript
-* LibreOffice Basic
-* Matlab/Octave
+* [C](#c)
+* [C++](#c++)
+* [C#](#c#)
+* [FORTRAN 90](#fortran-90)
+* [Java](#java)
+* [JavaScript](#javascript)
+* [LibreOffice Basic](#libreoffice-basic)
+* [Matlab/Octave](#matlabe/octave)
 * [Python 2/3](#python)
 * [R](#r)
 * [Ruby](#ruby)
