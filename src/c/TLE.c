@@ -121,19 +121,19 @@ long parseEpoch(ElsetRec *rec, char *str)
     rec->epochdays += dfrac;
         
         
-    dfrac *= 24.0d;
+    dfrac *= 24.0;
     int hr = (int)dfrac;
-    dfrac = 60.0d*(dfrac - hr);
+    dfrac = 60.0*(dfrac - hr);
     int mn = (int)dfrac;
-    dfrac = 60.0d*(dfrac - mn);
+    dfrac = 60.0*(dfrac - mn);
     int sc = (int)dfrac;
         
 
         
-    dfrac = 1000.d*(dfrac-sc);
+    dfrac = 1000.0*(dfrac-sc);
     int milli = (int)dfrac;
 
-    double sec = ((double)sc)+dfrac/1000.0d;
+    double sec = ((double)sc)+dfrac/1000.0;
 
     int mon = 0;
     int day = 0;
@@ -214,8 +214,8 @@ void setValsToRec(TLE *tle, ElsetRec *rec)
     rec->mo = tle->maDeg*deg2rad;
     rec->ecco = tle->ecc;
     rec->no_kozai = tle->n/xpdotp;
-    rec->ndot = tle->ndot / (xpdotp*1440.0d);
-    rec->nddot = tle->nddot / (xpdotp*1440.0d*1440.0d);
+    rec->ndot = tle->ndot / (xpdotp*1440.0);
+    rec->nddot = tle->nddot / (xpdotp*1440.0*1440.0);
         
     sgp4init('a', rec);
 }
