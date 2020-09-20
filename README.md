@@ -12,6 +12,19 @@ This code is released under an unlicense.  Do what you want with it completely a
 # Overview
 The astrodynamics calculations are all implemented as static functions in the SGP4 class/module.  The ElsetRec datastructure is used to maintain initialization state across those methods.  For convenience, I have implemented the TLE class.  The constructor accepts the two lines of the the two-line element set as arguments.  To then propagate (simulate) the orbit, I have implemented a few getRV methods in each language.  One will accept the number of minutes since the epoch as an argument.  In most languages, I've also implemented a version of getRV that accepts a Date or DateTime object to simulate the orbit at a specific point in time.  Sometimes, if I didn't find a helper class in the target language that I liked, I simply used the number of milliseconds since January 1, 1970 as the argument.
 
+# Languages
+* [C](#c)
+* [C++](#c-1)
+* [C#](#c-2)
+* [FORTRAN 90](#fortran-90)
+* [Java](#java)
+* [JavaScript](#javascript)
+* [LibreOffice Basic](#libreoffice-basic)
+* [Matlab/Octave](#matlaboctave)
+* [Python 2/3](#python)
+* [R](#r)
+* [Ruby](#ruby)
+
 # C
 
 gcc -o testsgp4 SGP4.c TLE.c TestSGP4.c -lm
@@ -74,6 +87,7 @@ ans = Typical errors r=6.722191E-03 mm	v=4.812040E-04 mm/s
 # Python
 The SGP4 and TLE code works in both Python 2 and Python 3.  The TestSGP4 code should also work in both versions and has a dependency on the standard json package. Simply execute your preferred version of python from the python src directory.
 
+python2 TestSGP4.py
 
 Typical Errors
 0.00651341005177
@@ -81,6 +95,7 @@ mm
 0.000481251231334
 mm/s
 
+python3 TestSGP4.py
 
 Typical Errors
 0.006513410051766991
