@@ -1,6 +1,5 @@
-#![allow(warnings)]
+//#![allow(warnings)]
 mod sgp4;
-use sgp4::elset_rec::ElsetRec as ElsetRec;
 use sgp4::tle::TLE as TLE;
 
 use std::fs::File;
@@ -30,13 +29,13 @@ fn main() {
 
     let mut tle = & mut TLE::new();
 
-    let mut mins:f64 = 0.0;
+    let mut mins:f64;
 
     vr = [0.0,0.0,0.0];
     vv = [0.0,0.0,0.0];
 
-    let mut rdist:f64 = 0.0;
-    let mut vdist:f64 = 0.0;
+    let mut rdist:f64;
+    let mut vdist:f64;
     let mut rerr:f64 = 0.0;
     let mut verr:f64 = 0.0;
     let mut cnt2:i32 = 0;
@@ -81,7 +80,7 @@ fn main() {
               verr = verr + vdist;
               cnt2 = cnt2+1;
 
-              if(rdist > 1e-7 || vdist > 1e-8)
+              if rdist > 1e-7 || vdist > 1e-8
               {
                   println!("{}\t{}\t{}\t{}",tle.object_num,mins,rdist,vdist);
               }
@@ -101,7 +100,7 @@ fn main() {
 
 fn dist(v1:&[f64; 3],v2:&[f64; 3]) -> f64
 {
-    let mut tmp:f64 = 0.0;
+    let mut tmp:f64;
     let mut sum:f64 = 0.0;
 
     tmp = v1[0]-v2[0];

@@ -22,11 +22,11 @@ use super::elset_rec::ElsetRec as ElsetRec;
         opsmode:char)
     {
         // --------------------- local variables ------------------------ */
-        let (mut alfdp, mut betdp, mut cosip, mut cosop, mut dalf, mut dbet, mut dls):(f64,f64,f64,f64,f64,f64,f64);
+        let (mut alfdp, mut betdp, cosip, cosop, dalf, dbet, dls):(f64,f64,f64,f64,f64,f64,f64);
         let (mut f2, mut f3, mut pe, mut pgh, mut ph, mut pinc, mut pl):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut sel, mut ses, mut sghl, mut sghs, mut shll, mut shs, mut sil):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut sinip, mut sinop, mut sinzf, mut sis, mut sll, mut sls, mut xls):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut xnoh, mut zf, mut zm, mut zel, mut zes, mut znl, mut zns):(f64,f64,f64,f64,f64,f64,f64);
+        let (sel, ses, sghl, sghs, shll, shs, sil):(f64,f64,f64,f64,f64,f64,f64);
+        let (sinip, sinop, mut sinzf, sis, sll, sls, mut xls):(f64,f64,f64,f64,f64,f64,f64);
+        let (xnoh, mut zf, mut zm, zel, zes, znl, zns):(f64,f64,f64,f64,f64,f64,f64);
 
         
         // ---------------------- constants ----------------------------- */
@@ -38,7 +38,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
         // --------------- calculate time varying periodics ----------- */
         zm = zmos + zns * t;
         // be sure that the initial call has time set to zero
-        if (init == 'y')
+        if init == 'y'
         {
             zm = zmos;
         }
@@ -52,7 +52,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
         sghs = sgh2 * f2 + sgh3 * f3 + sgh4 * sinzf;
         shs = sh2 * f2 + sh3 * f3;
         zm = zmol + znl * t;
-        if (init == 'y')
+        if init == 'y'
         {
             zm = zmol;
         }
@@ -71,7 +71,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
         pgh = sghs + sghl;
         ph = shs + shll;
 
-        if (init == 'n')
+        if init == 'n'
         {
             pe = pe - peo;
             pinc = pinc - pinco;
@@ -92,7 +92,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             //  use next line for original strn3 approach and original inclination
             //  if (inclo >= 0.2)
             //  use next line for gsfc version and perturbed inclination
-            if (rec.inclp >= 0.2)
+            if rec.inclp >= 0.2
             {
                 ph = ph / sinip;
                 pgh = pgh - cosip * ph;
@@ -114,7 +114,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
                 rec.nodep = fmod(rec.nodep, TWOPI);
                 //  sgp4fix for afspc written intrinsic functions
                 // nodep used without a trigonometric function ahead
-                if ((rec.nodep < 0.0) && (opsmode == 'a'))
+                if (rec.nodep < 0.0) && (opsmode == 'a')
                 {
                     rec.nodep = rec.nodep + TWOPI;
                 }
@@ -126,13 +126,13 @@ use super::elset_rec::ElsetRec as ElsetRec;
                 rec.nodep = atan2(alfdp, betdp);
                 //  sgp4fix for afspc written intrinsic functions
                 // nodep used without a trigonometric function ahead
-                if ((rec.nodep < 0.0) && (opsmode == 'a'))
+                if (rec.nodep < 0.0) && (opsmode == 'a')
                 {
                     rec.nodep = rec.nodep + TWOPI;
                 }
-                if (fabs(xnoh - rec.nodep) > PI)
+                if fabs(xnoh - rec.nodep) > PI
                 {
-                    if (rec.nodep < xnoh)
+                    if rec.nodep < xnoh
                     {
                         rec.nodep = rec.nodep + TWOPI;
                     }
@@ -161,13 +161,13 @@ use super::elset_rec::ElsetRec as ElsetRec;
         let zsings:f64 = -0.98088458;
 
         /* --------------------- local variables ------------------------ */
-        let mut lsflg:i32;
+        //let mut lsflg:i32;
         let (mut a1, mut a2, mut a3, mut a4, mut a5, mut a6, mut a7):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut a8, mut a9, mut a10, mut betasq, mut cc, mut ctem, mut stem):(f64,f64,f64,f64,f64,f64,f64);
+        let (mut a8, mut a9, mut a10, betasq, mut cc, ctem, stem):(f64,f64,f64,f64,f64,f64,f64);
         let (mut x1, mut x2, mut x3, mut x4, mut x5, mut x6, mut x7):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut x8, mut xnodce, mut xnoi, mut zcosg, mut zcosgl, mut zcosh, mut zcoshl):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut zcosi, mut zcosil, mut zsing, mut zsingl, mut zsinh, mut zsinhl, mut zsini):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut zsinil, mut zx, mut zy):(f64,f64,f64);
+        let (mut x8, xnodce, xnoi, mut zcosg, zcosgl, mut zcosh, zcoshl):(f64,f64,f64,f64,f64,f64,f64);
+        let (mut zcosi, zcosil, mut zsing, zsingl, mut zsinh, zsinhl, mut zsini):(f64,f64,f64,f64,f64,f64,f64);
+        let (zsinil, mut zx, zy):(f64,f64,f64);
 
         rec.nm = np;
         rec.em = ep;
@@ -262,7 +262,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             rec.s7 = x2 * x4 - x1 * x3;
 
             // ----------------------- do lunar terms ------------------- */
-            if (lsflg == 1)
+            if lsflg == 1
             {
                 rec.ss1 = rec.s1;
                 rec.ss2 = rec.s2;
@@ -330,16 +330,16 @@ use super::elset_rec::ElsetRec as ElsetRec;
     {
         // --------------------- local variables ------------------------ */
 
-        let (mut ainv2, mut aonv, mut cosisq, mut eoc, mut f220, mut f221, mut f311):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut f321, mut f322, mut f330, mut f441, mut f442, mut f522, mut f523):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut f542, mut f543, mut g200, mut g201, mut g211, mut g300, mut g310):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut g322, mut g410, mut g422, mut g520, mut g521, mut g532, mut g533):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut ses, mut sgs, mut sghl, mut sghs, mut shs, mut shll, mut sis):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut sini2, mut sls, mut temp, mut temp1, mut theta, mut xno2, mut q22):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut q31, mut q33, mut root22, mut root44, mut root54, mut rptim, mut root32):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut root52, mut x2o3, mut znl, mut emo, mut zns, mut emsqo):(f64,f64,f64,f64,f64,f64);
+        let (ainv2, aonv, cosisq, eoc, mut f220, f221, f311):(f64,f64,f64,f64,f64,f64,f64);
+        let (f321, f322, mut f330, f441, f442, f522, f523):(f64,f64,f64,f64,f64,f64,f64);
+        let (f542, f543, g200, g201, g211, g300, mut g310):(f64,f64,f64,f64,f64,f64,f64);
+        let (g322, g410, g422, g520, g521, g532, g533):(f64,f64,f64,f64,f64,f64,f64);
+        let (ses, sgs, sghl, sghs, mut shs, mut shll, sis):(f64,f64,f64,f64,f64,f64,f64);
+        let (sini2, sls, mut temp, mut temp1, theta, xno2, q22):(f64,f64,f64,f64,f64,f64,f64);
+        let (q31, q33, root22, root44, root54, rptim, root32):(f64,f64,f64,f64,f64,f64,f64);
+        let (root52, x2o3, znl, emo, zns, emsqo):(f64,f64,f64,f64,f64,f64);
 
-        aonv = 0.0;
+        //aonv = 0.0;
         q22 = 1.7891679e-6;
         q31 = 2.1460748e-6;
         q33 = 2.2123015e-7;
@@ -359,11 +359,11 @@ use super::elset_rec::ElsetRec as ElsetRec;
 
         // -------------------- deep space initialization ------------ */
         rec.irez = 0;
-        if ((rec.nm < 0.0052359877) && (rec.nm > 0.0034906585))
+        if (rec.nm < 0.0052359877) && (rec.nm > 0.0034906585)
         {
             rec.irez = 1;
         }
-        if ((rec.nm >= 8.26e-3) && (rec.nm <= 9.24e-3) && (rec.em >= 0.5))
+        if (rec.nm >= 8.26e-3) && (rec.nm <= 9.24e-3) && (rec.em >= 0.5)
         {
             rec.irez = 2;
         }
@@ -375,11 +375,11 @@ use super::elset_rec::ElsetRec as ElsetRec;
         sghs = rec.ss4 * zns * (rec.sz31 + rec.sz33 - 6.0);
         shs = -zns * rec.ss2 * (rec.sz21 + rec.sz23);
         // sgp4fix for 180 deg incl
-        if ((rec.inclm < 5.2359877e-2) || (rec.inclm > PI - 5.2359877e-2))
+        if (rec.inclm < 5.2359877e-2) || (rec.inclm > PI - 5.2359877e-2)
         {
             shs = 0.0;
         }
-        if (rec.sinim != 0.0)
+        if rec.sinim != 0.0
         {
             shs = shs / rec.sinim;
         }
@@ -392,13 +392,13 @@ use super::elset_rec::ElsetRec as ElsetRec;
         sghl = rec.s4 * znl * (rec.z31 + rec.z33 - 6.0);
         shll = -znl * rec.s2 * (rec.z21 + rec.z23);
         // sgp4fix for 180 deg incl
-        if ((rec.inclm < 5.2359877e-2) || (rec.inclm > PI - 5.2359877e-2))
+        if (rec.inclm < 5.2359877e-2) || (rec.inclm > PI - 5.2359877e-2)
         {
             shll = 0.0;
         }
         rec.domdt = sgs + sghl;
         rec.dnodt = shs;
-        if (rec.sinim != 0.0)
+        if rec.sinim != 0.0
         {
             rec.domdt = rec.domdt - rec.cosim / rec.sinim * shll;
             rec.dnodt = rec.dnodt + shll / rec.sinim;
@@ -422,12 +422,12 @@ use super::elset_rec::ElsetRec as ElsetRec;
         //  }
 
         // -------------- initialize the resonance terms ------------- */
-        if (rec.irez != 0)
+        if rec.irez != 0
         {
             aonv = pow(rec.nm / rec.xke, x2o3);
 
             // ---------- geopotential resonance for 12 hour orbits ------ */
-            if (rec.irez == 2)
+            if rec.irez == 2
             {
                 cosisq = rec.cosim * rec.cosim;
                 emo = rec.em;
@@ -437,7 +437,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
                 eoc = rec.em * rec.emsq;
                 g201 = -0.306 - (rec.em - 0.64) * 0.440;
 
-                if (rec.em <= 0.65)
+                if rec.em <= 0.65
                 {
                     g211 = 3.616 - 13.2470 * rec.em + 16.2900 * rec.emsq;
                     g310 = -19.302 + 117.3900 * rec.em - 228.4190 * rec.emsq + 156.5910 * eoc;
@@ -453,7 +453,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
                     g322 = -342.585 + 1554.908 * rec.em - 2366.899 * rec.emsq + 1215.972 * eoc;
                     g410 = -1052.797 + 4758.686 * rec.em - 7193.992 * rec.emsq + 3651.957 * eoc;
                     g422 = -3581.690 + 16178.110 * rec.em - 24462.770 * rec.emsq + 12422.520 * eoc;
-                    if (rec.em > 0.715)
+                    if rec.em > 0.715
                     {
                         g520 = -5149.66 + 29936.92 * rec.em - 54087.36 * rec.emsq + 31324.56 * eoc;
                     }
@@ -462,7 +462,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
                         g520 = 1464.74 - 4664.75 * rec.em + 3763.64 * rec.emsq;
                     }
                 }
-                if (rec.em < 0.7)
+                if rec.em < 0.7
                 {
                     g533 = -919.22770 + 4988.6100 * rec.em - 9064.7700 * rec.emsq + 5542.21  * eoc;
                     g521 = -822.71072 + 4568.6173 * rec.em - 8491.4146 * rec.emsq + 5337.524 * eoc;
@@ -518,7 +518,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             }
 
             // ---------------- synchronous resonance terms -------------- */
-            if (rec.irez == 1)
+            if rec.irez == 1
             {
                 g200 = 1.0 + rec.emsq * (-2.5 + 0.8125 * rec.emsq);
                 g310 = 1.0 + 2.0 * rec.emsq;
@@ -548,11 +548,11 @@ use super::elset_rec::ElsetRec as ElsetRec;
     {
         let mut iretn:i32;
          
-        let (mut delt, mut ft, mut theta, mut x2li, mut x2omi):(f64,f64,f64,f64,f64);
-        let (mut xl, mut xldot, mut xnddt, mut xndt, mut xomi):(f64,f64,f64,f64,f64);
-        let (mut g22, mut g32, mut g44, mut g52, mut g54):(f64,f64,f64,f64,f64);
-        let (mut fasx2, mut fasx4, mut fasx6, mut rptim, mut step2):(f64,f64,f64,f64,f64);
-        let ( mut stepn, mut stepp):(f64,f64);
+        let (delt, mut ft, theta, mut x2li, mut x2omi):(f64,f64,f64,f64,f64);
+        let (xl, mut xldot, mut xnddt, mut xndt, mut xomi):(f64,f64,f64,f64,f64);
+        let (g22, g32, g44, g52, g54):(f64,f64,f64,f64,f64);
+        let (fasx2, fasx4, fasx6, rptim, step2):(f64,f64,f64,f64,f64);
+        let (stepn, stepp):(f64,f64);
         
         xndt = 0.0;
         xnddt = 0.0;
@@ -598,17 +598,17 @@ use super::elset_rec::ElsetRec as ElsetRec;
 
         // sgp4fix take out atime = 0.0 and fix for faster operation
         ft = 0.0;
-        if (rec.irez != 0)
+        if rec.irez != 0
         {
             // sgp4fix streamline check
-            if ((rec.atime == 0.0) || (rec.t * rec.atime <= 0.0) || (fabs(rec.t) < fabs(rec.atime)))
+            if (rec.atime == 0.0) || (rec.t * rec.atime <= 0.0) || (fabs(rec.t) < fabs(rec.atime))
             {
                 rec.atime = 0.0;
                 rec.xni = rec.no_unkozai;
                 rec.xli = rec.xlamo;
             }
             // sgp4fix move check outside loop
-            if (rec.t > 0.0)
+            if rec.t > 0.0
             {
                 delt = stepp;
             }
@@ -618,11 +618,11 @@ use super::elset_rec::ElsetRec as ElsetRec;
             }
 
             iretn = 381; // added for do loop
-            while (iretn == 381)
+            while iretn == 381
             {
                 // ------------------- dot terms calculated ------------- */
                 // ----------- near - synchronous resonance terms ------- */
-                if (rec.irez != 2)
+                if rec.irez != 2
                 {
                     xndt = rec.del1 * sin(rec.xli - fasx2) + rec.del2 * sin(2.0 * (rec.xli - fasx4)) +
                             rec.del3 * sin(3.0 * (rec.xli - fasx6));
@@ -655,7 +655,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
 
                 // ----------------------- integrator ------------------- */
                 // sgp4fix move end checks to end of routine
-                if (fabs(rec.t - rec.atime) >= stepp)
+                if fabs(rec.t - rec.atime) >= stepp
                 {
                     iretn = 381;
                 }
@@ -665,7 +665,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
                     iretn = 0;
                 }
 
-                if (iretn == 381)
+                if iretn == 381
                 {
                     rec.xli = rec.xli + xldot * delt + xndt * step2;
                     rec.xni = rec.xni + xndt * delt + xnddt * step2;
@@ -676,7 +676,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             
             rec.nm = rec.xni + xndt * ft + xnddt * ft * ft * 0.5;
             xl = rec.xli + xldot * ft + xndt * ft * ft * 0.5;
-            if (rec.irez != 1)
+            if rec.irez != 1
             {
                 rec.mm = xl - 2.0 * rec.nodem + 2.0 * theta;
                 rec.dndt = rec.nm - rec.no_unkozai;
@@ -694,11 +694,11 @@ use super::elset_rec::ElsetRec as ElsetRec;
     pub fn initl(epoch:f64, rec:&mut ElsetRec)
     {
         // --------------------- local variables ------------------------ */
-        let (mut ak, mut d1, mut del, mut adel, mut po, mut x2o3):(f64,f64,f64,f64,f64,f64);
+        let (ak, d1, mut del, adel, po, x2o3):(f64,f64,f64,f64,f64,f64);
 
         // sgp4fix use old way of finding gst
-        let mut ds70:f64;
-        let (mut ts70, mut tfrac, mut c1, mut thgr70, mut fk5r, mut c1p2p):(f64,f64,f64,f64,f64,f64);
+        //let ds70:f64;
+        //let (ts70, tfrac, c1, thgr70, fk5r, c1p2p):(f64,f64,f64,f64,f64,f64);
         
         // ----------------------- earth constants ---------------------- */
         // sgp4fix identify constants and allow alternate values
@@ -737,19 +737,19 @@ use super::elset_rec::ElsetRec as ElsetRec;
         //      {
         // sgp4fix use old way of finding gst
         // count integer number of days from 0 jan 1970
-        ts70 = epoch - 7305.0;
-        ds70 = floor(ts70 + 1.0e-8);
-        tfrac = ts70 - ds70;
+        //ts70 = epoch - 7305.0;
+        //ds70 = floor(ts70 + 1.0e-8);
+        //tfrac = ts70 - ds70;
         // find greenwich location at epoch
-        c1 = 1.72027916940703639e-2;
-        thgr70 = 1.7321343856509374;
-        fk5r = 5.07551419432269442e-15;
-        c1p2p = c1 + TWOPI;
-        let mut gsto1 = fmod(thgr70 + c1*ds70 + c1p2p*tfrac + ts70*ts70*fk5r, TWOPI);
-        if (gsto1 < 0.0)
-        {
-            gsto1 = gsto1 + TWOPI;
-        }
+        //c1 = 1.72027916940703639e-2;
+        //thgr70 = 1.7321343856509374;
+        //fk5r = 5.07551419432269442e-15;
+        //c1p2p = c1 + TWOPI;
+        //let mut gsto1 = fmod(thgr70 + c1*ds70 + c1p2p*tfrac + ts70*ts70*fk5r, TWOPI);
+        //if gsto1 < 0.0
+        //{
+        //    gsto1 = gsto1 + TWOPI;
+        //}
         //    }
         //    else
         rec.gsto = gstime(epoch + 2433281.5);
@@ -760,18 +760,18 @@ use super::elset_rec::ElsetRec as ElsetRec;
     {
         // --------------------- local variables ------------------------ */
         
-        let mut cc1sq:f64;
-        let (mut cc2, mut cc3, mut coef, mut coef1, mut cosio4):(f64,f64,f64,f64,f64);
-        let (mut eeta, mut etasq, mut perige, mut pinvsq, mut psisq, mut qzms24):(f64,f64,f64,f64,f64,f64);
-        let (mut sfour,mut tc, mut temp, mut temp1, mut temp2, mut temp3, mut tsi):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut xhdot1, mut qzms2t, mut ss, mut x2o3, mut xpidot):(f64,f64,f64,f64,f64);
-        let (mut delmotemp, mut qzms2ttemp, mut qzms24temp):(f64,f64,f64);
+        let cc1sq:f64;
+        let (cc2, mut cc3, coef, coef1, cosio4):(f64,f64,f64,f64,f64);
+        let (eeta, etasq, perige, pinvsq, psisq, mut qzms24):(f64,f64,f64,f64,f64,f64);
+        let (mut sfour, tc, temp, temp1, temp2, temp3, tsi):(f64,f64,f64,f64,f64,f64,f64);
+        let (xhdot1, qzms2t, ss, x2o3, xpidot):(f64,f64,f64,f64,f64);
+        let (delmotemp, qzms2ttemp, qzms24temp):(f64,f64,f64);
 
         let mut v = [0.0,0.0,0.0];
         let mut r = [0.0,0.0,0.0];
         
                        
-        let mut epoch = (satrec.jdsatepoch + satrec.jdsatepoch_f) - 2433281.5;
+        let epoch = (satrec.jdsatepoch + satrec.jdsatepoch_f) - 2433281.5;
         
         // ------------------------ initialization --------------------- */
         // sgp4fix divisor for divide by zero check on inclination
@@ -846,7 +846,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
         
         initl(epoch,satrec);
         
-        satrec.a = pow(satrec.no_unkozai * satrec.tumin, (-2.0 / 3.0));
+        satrec.a = pow(satrec.no_unkozai * satrec.tumin, -2.0 / 3.0);
         satrec.alta = satrec.a * (1.0 + satrec.ecco) - 1.0;
         satrec.altp = satrec.a * (1.0 - satrec.ecco) - 1.0;
         satrec.error = 0;
@@ -859,10 +859,10 @@ use super::elset_rec::ElsetRec as ElsetRec;
         //         satrec.error = 5;
         //       }
 
-        if ((satrec.omeosq >= 0.0) || (satrec.no_unkozai >= 0.0))
+        if (satrec.omeosq >= 0.0) || (satrec.no_unkozai >= 0.0)
         {
             satrec.isimp = 0;
-            if (satrec.rp < (220.0 / satrec.radiusearthkm + 1.0))
+            if satrec.rp < (220.0 / satrec.radiusearthkm + 1.0)
             {
                 satrec.isimp = 1;
             }
@@ -871,10 +871,10 @@ use super::elset_rec::ElsetRec as ElsetRec;
             perige = (satrec.rp - 1.0) * satrec.radiusearthkm;
 
             // - for perigees below 156 km, s and qoms2t are altered - */
-            if (perige < 156.0)
+            if perige < 156.0
             {
                 sfour = perige - 78.0;
-                if (perige < 98.0)
+                if perige < 98.0
                 {
                     sfour = 20.0;
                 }
@@ -897,7 +897,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
                 (8.0 + 3.0 * etasq * (8.0 + etasq)));
             satrec.cc1 = satrec.bstar * cc2;
             cc3 = 0.0;
-            if (satrec.ecco > 1.0e-4)
+            if satrec.ecco > 1.0e-4
             {
                 cc3 = -2.0 * coef * tsi * satrec.j3oj2 * satrec.no_unkozai * satrec.sinio / satrec.ecco;
             }
@@ -925,14 +925,14 @@ use super::elset_rec::ElsetRec as ElsetRec;
             xpidot = satrec.argpdot + satrec.nodedot;
             satrec.omgcof = satrec.bstar * cc3 * cos(satrec.argpo);
             satrec.xmcof = 0.0;
-            if (satrec.ecco > 1.0e-4)
+            if satrec.ecco > 1.0e-4
             {
                 satrec.xmcof = -x2o3 * coef * satrec.bstar / eeta;
-             }
+            }
             satrec.nodecf = 3.5 * satrec.omeosq * xhdot1 * satrec.cc1;
             satrec.t2cof = 1.5 * satrec.cc1;
             // sgp4fix for divide by zero with xinco = 180 deg
-            if (fabs(satrec.cosio + 1.0) > 1.5e-12)
+            if fabs(satrec.cosio + 1.0) > 1.5e-12
             {
                 satrec.xlcof = -0.25 * satrec.j3oj2 * satrec.sinio * (3.0 + 5.0 * satrec.cosio) / (1.0 + satrec.cosio);
             }
@@ -947,10 +947,9 @@ use super::elset_rec::ElsetRec as ElsetRec;
             satrec.sinmao = sin(satrec.mo);
             satrec.x7thm1 = 7.0 * satrec.cosio2 - 1.0;
 
-            let mmmm = 2.0 *PI / satrec.no_unkozai;
 
             // --------------- deep space initialization ------------- */
-            if ((2.0 * PI / satrec.no_unkozai) >= 225.0)
+            if (2.0 * PI / satrec.no_unkozai) >= 225.0
             {
                 satrec.method = 'd';
                 satrec.isimp = 1;
@@ -992,7 +991,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             }
 
             // ----------- set variables if not deep space ----------- */
-            if (satrec.isimp != 1)
+            if satrec.isimp != 1
             {
                 cc1sq = satrec.cc1 * satrec.cc1;
                 satrec.d2 = 4.0 * satrec.ao * tsi * cc1sq;
@@ -1025,22 +1024,22 @@ use super::elset_rec::ElsetRec as ElsetRec;
     pub fn sgp4(satrec: &mut ElsetRec, tsince:f64, r: &mut[f64], v: &mut[f64]) -> bool
     {
         
-        let (mut axnl, mut aynl, mut betal, mut cnod):(f64,f64,f64,f64);
-        let (mut cos2u, mut coseo1, mut cosi, mut cosip, mut cosisq, mut cossu, mut cosu):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut delm, mut delomg, mut ecose, mut el2, mut eo1):(f64,f64,f64,f64,f64);
-        let (mut esine, mut argpdf, mut pl, mut mrt):(f64,f64,f64,f64);
-        let (mut mvt, mut rdotl, mut rl, mut rvdot, mut rvdotl):(f64,f64,f64,f64,f64);
-        let (mut sin2u, mut sineo1, mut sini, mut sinip, mut sinsu, mut sinu):(f64,f64,f64,f64,f64,f64);
-        let (mut snod, mut su, mut t2, mut t3, mut t4, mut tem5, mut temp):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut temp1, mut temp2, mut tempa, mut tempe, mut templ, mut u, mut ux):(f64,f64,f64,f64,f64,f64,f64);
-        let (mut uy, mut uz, mut vx, mut vy, mut vz):(f64,f64,f64,f64,f64);
-        let (mut xinc, mut xincp, mut xl, mut xlm):(f64,f64,f64,f64);
-        let (xmdf, xmx, xmy, nodedf, xnode, mut tc):(f64,f64,f64,f64,f64,f64);
-        let (x2o3, vkmpersec, mut delmtemp):(f64,f64,f64);
+        let (axnl, aynl, betal, cnod):(f64,f64,f64,f64);
+        let (cos2u, mut coseo1, cosi, mut cosip, cosisq, cossu, cosu):(f64,f64,f64,f64,f64,f64,f64);
+        let (delm, delomg, ecose, el2, mut eo1):(f64,f64,f64,f64,f64);
+        let (esine, argpdf, pl, mrt):(f64,f64,f64,f64);
+        let (mvt, rdotl, rl, rvdot, rvdotl):(f64,f64,f64,f64,f64);
+        let (sin2u, mut sineo1, sini, mut sinip, sinsu, sinu):(f64,f64,f64,f64,f64,f64);
+        let (snod, mut su, t2, t3, t4, mut tem5, mut temp):(f64,f64,f64,f64,f64,f64,f64);
+        let (temp1, temp2, mut tempa, mut tempe, mut templ, u, ux):(f64,f64,f64,f64,f64,f64,f64);
+        let (uy, uz, vx, vy, vz):(f64,f64,f64,f64,f64);
+        let (xinc, mut xincp, xl, mut xlm):(f64,f64,f64,f64);
+        let (xmdf, xmx, xmy, nodedf, xnode, tc):(f64,f64,f64,f64,f64,f64);
+        let (x2o3, vkmpersec, delmtemp):(f64,f64,f64);
         
         let mut ktr:i32;
 
-        mrt = 0.0;
+        //mrt = 0.0;
 
         // ------------------ set mathematical constants --------------- */
         // sgp4fix divisor for divide by zero check on inclination
@@ -1068,13 +1067,14 @@ use super::elset_rec::ElsetRec as ElsetRec;
         tempe = satrec.bstar * satrec.cc4 * satrec.t;
         templ = satrec.t2cof * t2;
 
-        delomg = 0.0;
-        delmtemp = 0.0;
-        delm = 0.0;
-        temp = 0.0;
-        t3 = 0.0;
-        t4 = 0.0;
-        mrt = 0.0;
+        // initializing to 0 generates a warning in rust.  What's the harm?
+        //delomg = 0.0;
+        //delmtemp = 0.0;
+        //delm = 0.0;
+        //temp = 0.0;
+        //t3 = 0.0;
+        //t4 = 0.0;
+        //mrt = 0.0;
         
         if satrec.isimp != 1
         {
@@ -1096,7 +1096,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
         }
 
         
-        tc = 0.0;
+        //tc = 0.0;
         satrec.nm = satrec.no_unkozai;
         satrec.em = satrec.ecco;
         satrec.inclm = satrec.inclo;
@@ -1114,7 +1114,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             return false;
         }
 
-        satrec.am = pow((satrec.xke / satrec.nm), x2o3) * tempa * tempa;
+        satrec.am = pow(satrec.xke / satrec.nm, x2o3) * tempa * tempa;
         satrec.nm = satrec.xke / pow(satrec.am, 1.5);
         satrec.em = satrec.em - tempe;
 
@@ -1128,14 +1128,14 @@ use super::elset_rec::ElsetRec as ElsetRec;
             return false;
         }
         // sgp4fix fix tolerance to avoid a divide by zero
-        if (satrec.em < 1.0e-6)
+        if satrec.em < 1.0e-6
         {
             satrec.em = 1.0e-6;
         }
         satrec.mm = satrec.mm + satrec.no_unkozai * templ;
         xlm = satrec.mm + satrec.argpm + satrec.nodem;
         satrec.emsq = satrec.em * satrec.em;
-        temp = 1.0 - satrec.emsq;
+        //temp = 1.0 - satrec.emsq;
 
         satrec.nodem = fmod(satrec.nodem, TWOPI);
         satrec.argpm = fmod(satrec.argpm, TWOPI);
@@ -1192,13 +1192,13 @@ use super::elset_rec::ElsetRec as ElsetRec;
         } // if method = d
 
         // -------------------- long period periodics ------------------ */
-        if (satrec.method == 'd')
+        if satrec.method == 'd'
         {
             sinip = sin(xincp);
             cosip = cos(xincp);
             satrec.aycof = -0.5*satrec.j3oj2*sinip;
             // sgp4fix for divide by zero for xincp = 180 deg
-            if (fabs(cosip + 1.0) > 1.5e-12)
+            if fabs(cosip + 1.0) > 1.5e-12
             {
                 satrec.xlcof = -0.25 * satrec.j3oj2 * sinip * (3.0 + 5.0 * cosip) / (1.0 + cosip);
             }
@@ -1221,13 +1221,13 @@ use super::elset_rec::ElsetRec as ElsetRec;
         coseo1 = 0.0;
         //   sgp4fix for kepler iteration
         //   the following iteration needs better limits on corrections
-        while ((fabs(tem5) >= 1.0e-12) && (ktr <= 10))
+        while (fabs(tem5) >= 1.0e-12) && (ktr <= 10)
         {
             sineo1 = sin(eo1);
             coseo1 = cos(eo1);
             tem5 = 1.0 - coseo1 * axnl - sineo1 * aynl;
             tem5 = (u - aynl * coseo1 + axnl * sineo1 - eo1) / tem5;
-            if (fabs(tem5) >= 0.95)
+            if fabs(tem5) >= 0.95
             {
                 if tem5 > 0.0
                 {
@@ -1247,7 +1247,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
         esine = axnl*sineo1 - aynl*coseo1;
         el2 = axnl*axnl + aynl*aynl;
         pl = satrec.am*(1.0 - el2);
-        if (pl < 0.0)
+        if pl < 0.0
         {
             satrec.error = 4;
             // sgp4fix add return
@@ -1270,7 +1270,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             temp2 = temp1 * temp;
 
             // -------------- update for short period periodics ------------ */
-            if (satrec.method == 'd')
+            if satrec.method == 'd'
             {
                 cosisq = cosip * cosip;
                 satrec.con41 = 3.0*cosisq - 1.0;
@@ -1312,7 +1312,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
         }  // if pl > 0
 
         // sgp4fix for decaying satellites
-        if (mrt < 1.0)
+        if mrt < 1.0
         {
             satrec.error = 6;
             return false;
@@ -1382,7 +1382,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             rec.j4 = -0.00000165597;
             rec.j3oj2 = rec.j3 / rec.j2;
             }
-            _ | WGS84 => { 
+            WGS84 => { 
             // ------------ wgs-84 constants ------------
             rec.mu = 398600.5;            // in km3 / s2
             rec.radiusearthkm = 6378.137;     // km
@@ -1393,6 +1393,7 @@ use super::elset_rec::ElsetRec as ElsetRec;
             rec.j4 = -0.00000161098761;
             rec.j3oj2 = rec.j3 / rec.j2;
             }
+            _ => {}
         }
 
     }   // getgravconst
@@ -1405,8 +1406,8 @@ use super::elset_rec::ElsetRec as ElsetRec;
     
     pub fn gstime(jdut1:f64) -> f64
     {
-        let mut temp = 0.0 as f64;
-        let mut tut1 = 0.0 as f64;
+        let mut temp:f64;
+        let tut1:f64;
 
         tut1 = (jdut1 - 2451545.0) / 36525.0;
         temp = -6.2e-6* tut1 * tut1 * tut1 + 0.093104 * tut1 * tut1 +
@@ -1424,8 +1425,8 @@ use super::elset_rec::ElsetRec as ElsetRec;
     
     pub fn jday(year:i32, mon:i32, day:i32, hr:i32, minute:i32, sec:f64) -> (f64,f64)
     {
-        let mut jd = 0.0 as f64;
-        let mut jdfrac = 0 as f64;
+        let mut jd:f64;
+        let mut jdfrac:f64;
 
         jd = 367.0 * (year as f64) -
             floor((7.0 * ( (year as f64) + floor(( (mon as f64) + 9.0) / 12.0))) * 0.25) +

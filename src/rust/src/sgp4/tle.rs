@@ -41,7 +41,7 @@ pub fn substr(text: &String, ind1:i32, ind2:i32) -> String{
     let mut l1int = (*text).clone();
     let mut txt = l1int.split_off(ind1 as usize);
     let i2 = ind2-ind1;
-    let dumb = txt.split_off(i2 as usize);
+    let _dumb = txt.split_off(i2 as usize);
     return txt;
 }
 
@@ -49,8 +49,8 @@ pub fn gd(sstr:&String, start:i32, end:i32) -> f64 {
     return gdd(sstr,start,end,0.0);
 }
     
-pub fn gdd(sstr:&String, start:i32, end:i32, def_val:f64) -> f64 {
-    let mut num = def_val;
+pub fn gdd(sstr:&String, start:i32, end:i32, _def_val:f64) -> f64 {
+    let num:f64; // = def_val;
     num = substr(sstr,start,end).trim().parse::<f64>().unwrap();
     return num;
 }
@@ -59,9 +59,9 @@ pub fn gdi(sign:String, sstr:&String, start:i32, end:i32) -> f64 {
     return gdid(sign,sstr,start,end,0.0);
 }
     
-pub fn gdid(sign:String, sstr:&String, start:i32, end:i32, def_val:f64) -> f64 {
+pub fn gdid(sign:String, sstr:&String, start:i32, end:i32, _def_val:f64) -> f64 {
 
-    let mut num = def_val;
+    let mut num:f64; // = def_val;
     let mut text = substr(sstr,start,end);
     text = text.trim().to_string();
     let t2 = "0.".to_string()+&text;
@@ -112,14 +112,14 @@ impl TLE {
     pub fn parse_lines(&mut self, line1:&String, line2:&String) {
 
         let mut rec = ElsetRec::new();
-        let mut text = substr(&line1,18,32);
+        let text = substr(&line1,18,32);
         let epc = self.parse_epoch(text,&mut rec);
         self.epoch = epc;
 
         self.line1 = line1.clone();
         self.line2 = line2.clone();
 
-        let mut l1int = line1.clone();
+        let l1int = line1.clone();
         self.object_num = gd(&line1,2,7) as i32;
         rec.classification = l1int.chars().nth(7).unwrap();
         //                 1         2         3         4         5         6
@@ -240,8 +240,6 @@ pub fn read_tles(tlefile:String) -> Vec<TLE>
     let mut tles: Vec<TLE> = Vec::<TLE>::new();
     let mut prev_line:String;
     let mut cur_line:String = "987654321".to_string();
-    let mut line1:String;
-    let mut line2:String;
     let mut tle:TLE;
 
     let mut c1:char;
