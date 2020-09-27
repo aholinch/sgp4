@@ -12,3 +12,5 @@ a.out
 src/cpp/testsgp4
 src/charp/obj
 src/charp/bin
+src/rust/Cargo.lock
+src/rust/target

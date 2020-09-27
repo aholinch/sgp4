@@ -13,7 +13,7 @@ typedef struct VERIN {
 } VERIN;
 
 /**
- * returns the count of verins read and sets the point to an array created with malloc.
+ * returns the count of verins read and sets the pointer to an array created with malloc.
  */
 int readVERINs(VERIN **listptr)
 {
