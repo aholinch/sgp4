@@ -221,6 +221,31 @@ impl TLE {
         return epch;
     }
 
+    pub fn get_rv_for_utc(&mut self, date:&chrono::DateTime<Utc>) -> ([f64; 3],[f64; 3])
+    {
+        let mut mins:f64;
+
+        // get and substract whole seconds
+        let d1:i64 = self.epoch.timestamp();
+        let d2:i64 = date.timestamp();
+
+        let mut tmps:i64 = d2-d1;
+        mins = tmps as f64;
+      
+        // get and subtract nanoseconds 
+        let n1:i64 = self.epoch.timestamp_subsec_nanos() as i64;
+        let n2:i64 = date.timestamp_subsec_nanos() as i64;
+        tmps = n2 - n1;
+        let mut tmpf = tmps as f64;
+        tmpf = tmpf / 1e9;
+        mins = mins+tmpf;
+
+        // convert to minutes
+        mins = mins/60.0;
+        println!("{:?}\t{:?}\t{}",self.epoch,date,mins); 
+        return self.get_rv(mins);
+    }
+
     pub fn get_rv(&mut self, minutes_after_epoch:f64) -> ([f64; 3],[f64; 3])
     {
         let mut r = [0.0,0.0,0.0];
