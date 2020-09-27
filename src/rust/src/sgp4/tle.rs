@@ -1,4 +1,4 @@
-// This modue knows how to parse two line element sets and access the individual elements.
+// This module knows how to parse two line element sets and access the individual elements.
 // 
 // @author aholinch
 
