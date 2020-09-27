@@ -13,6 +13,7 @@ This code is released under an unlicense.  Do what you want with it completely a
 The astrodynamics calculations are all implemented as static functions in the SGP4 class/module.  The ElsetRec datastructure is used to maintain initialization state across those methods.  For convenience, I have implemented the TLE class.  The constructor accepts the two lines of the the two-line element set as arguments.  To then propagate (simulate) the orbit, I have implemented a few getRV methods in each language.  One will accept the number of minutes since the epoch as an argument.  In most languages, I've also implemented a version of getRV that accepts a Date or DateTime object to simulate the orbit at a specific point in time.  Sometimes, if I didn't find a helper class in the target language that I liked, I simply used the number of milliseconds since January 1, 1970 as the argument.
 
 # Languages
+I've delivered production code in all of these languages.
 * [C](#c)
 * [C++](#c-1)
 * [C#](#c-2)
@@ -24,6 +25,10 @@ The astrodynamics calculations are all implemented as static functions in the SG
 * [Python 2/3](#python)
 * [R](#r)
 * [Ruby](#ruby)
+
+I've only done my own projects in these languages.
+* [Rust](#rust)
+
 
 # C
 
@@ -117,3 +122,12 @@ The Ruby version was ported from the Python version. To run the code go to the r
 ruby TestSGP4.rb
 
 Typical Errors 0.006722191115878764 mm, 0.0004812040288887651 mm/s
+
+
+# Rust
+The Rust version was ported from the C version.  To run the code go to the rust directory and type:
+
+cargo run
+
+Typical errors r=0.006589293163823231 mm, v=0.00048047055139244986 mm/s
+
