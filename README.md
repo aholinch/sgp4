@@ -28,6 +28,7 @@ I've delivered production code in all of these languages.
 
 I've only done my own projects in these languages.
 * [Rust](#rust)
+* [Swift](#swift)
 
 
 # C
@@ -131,3 +132,10 @@ cargo run
 
 Typical errors r=0.006589293163823231 mm, v=0.00048047055139244986 mm/s
 
+
+# Swift
+The Swift version was ported from C and Rust.  To run the code, go the swift/sgp4 directory.
+You can compile with "swift build"
+To execute, you can run .build/debug/sgp4
+
+Typical errors r=0.007046565385144334 mm, v=0.0004804350487733351 mm/s
