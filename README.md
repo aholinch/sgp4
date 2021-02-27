@@ -6,6 +6,9 @@ Standards and Innovation ([CSSI](http://www.centerforspace.com/)) published a de
 released the [software](http://www.centerforspace.com/downloads/).  Most importantly they produced an extensive set of test cases that cover multiple orbit regimes, potential singularities, and other
 tricky orbits.
 
+## Alpha-5 Format
+In December 2020 Space-track.org announced a change to the object id format.  In order to accommodate more that 100 000 objects, the object id in TLEs will include alphabetic characters.  I’m in the process of updating each TLE and ElsetRec structure to provide basic support.  At this time the plan is to simply treat the id as a string.  There is a schema to convert alpha-5 to integers, but that is not required to parse and simulated TLEs.I
+
 # License
 This code is released under an unlicense.  Do what you want with it completely at your own risk.  It is based on code released by the Center for Space Standards & Innovation ([CSSI](http://www.centerforspace.com/)).  Their [code](http://www.centerforspace.com/downloads/) is based on a US Government standard.  No liability and no warranty are offered.
 
