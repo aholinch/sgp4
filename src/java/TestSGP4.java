@@ -242,6 +242,7 @@ public class TestSGP4
                 {
                     sa = line.split(" ");
                     id = sa[0].trim();
+                    while(id.startsWith("0")) id = id.substring(1);
                     v = new VEROUT();
                     v.id = id;
                     entries = new ArrayList<VEROUTEntry>();

@@ -268,6 +268,8 @@ public class TLE
     	
     	objectID = line1.substring(2,7).trim();
     	if(objectID != line2.substring(2,7).trim()) addParseError("ids don't match");
+
+        while(objectID.startsWith("0")) objectID = objectID.substring(1);
     	
     	rec.classification = line1.charAt(7);
 	       //          1         2         3         4         5         6
