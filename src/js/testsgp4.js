@@ -20,7 +20,7 @@ function generateVerificationOutputs(verins)
     {
         v = verins[i];
         tle = new TLE(v.line1,v.line2);
-        id = tle.getObjectNum();
+        id = tle.getObjectID();
         entries = new Array();
         
         vo = new Object();

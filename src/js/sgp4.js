@@ -20,7 +20,7 @@ const wgs84 = 3;
 class ElsetRec {
     constructor() {
     this.whichconst = wgs72;
-    this.satnum=0;
+    this.satID=null;
     this.epochyr=0;
     this.epochtynumrev=0;
     this.error=0;
@@ -2221,7 +2221,7 @@ class TLE
         this.line1 = null;
         this.line2 = null;
         this.intlid = null;
-        this.objectNum = 0;
+        this.objectID = null;
         this.epoch = null;
         this.ndot = 0;
         this.nddot = 0;
@@ -2290,14 +2290,14 @@ class TLE
         this.intlid = id;
     }
     
-    getObjectNum()
+    getObjectID()
     {
-        return this.objectNum;
+        return this.objectID;
     }
     
-    setObjectNum(on)
+    setObjectID(id)
     {
-        this.objectNum = on;
+        this.objectID = id;
     }
     
     getEpoch()
@@ -2471,13 +2471,13 @@ class TLE
         
 
         
-        this.objectNum = this.gd(line1,2,7);
-        this.objectNum = this.objectNum|0; // cast to int
+        this.objectID = line1.substring(2,7).trim();
         
-        var o2 = this.gd(line1,2,7);
-        o2 = o2|0;
+        var o2 = line1.substring(2,7).trim();
         
-        if(this.objectNum != o2)this.addParseError("ids don't match");
+        if(this.objectID != o2)this.addParseError("ids don't match");
+
+        while(this.objectID.startsWith('0')) this.objectID = this.objectID.substring(1);
         
         this.rec.classification = line1.charAt(7);
 
@@ -2516,7 +2516,7 @@ class TLE
 
         this.rec.elnum = this.elnum;
         this.rec.revnum = this.revnum;
-        this.rec.satnum = this.objectNum;
+        this.rec.satID = this.objectID;
         this.rec.bstar = this.bstar;
         this.rec.inclo = this.incDeg*deg2rad;
         this.rec.nodeo = this.raanDeg*deg2rad;
