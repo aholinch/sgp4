@@ -117,7 +117,7 @@ program TestSGP4
             cnt2 = cnt2+1
 
             if(rdist .GT. 1e-7 .OR. vdist .GT. 1e-8) then
-                print *,tle%objectNum,mins,rdist,vdist
+                print *,tle%objectID,mins,rdist,vdist
             end if
 
         end if

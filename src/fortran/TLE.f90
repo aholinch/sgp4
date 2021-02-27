@@ -7,7 +7,7 @@ MODULE TLEMOD
     CHARACTER*70 line1
     CHARACTER*70 line2
     CHARACTER*12 intlid 
-    INTEGER*4 objectNum
+    CHARACTER*5 objectID
     INTEGER*8 epoch
     REAL*8 ndot
     REAL*8 nddot
@@ -60,7 +60,7 @@ MODULE TLEMOD
 
     rec%elnum = tle%elnum
     rec%revnum = tle%revnum
-    rec%satnum = tle%objectNum
+    rec%satID = tle%objectID
     rec%bstar = tle%bstar
     rec%inclo = tle%incDeg*deg2rad
     rec%nodeo = tle%raanDeg*deg2rad
@@ -139,7 +139,7 @@ MODULE TLEMOD
 
     tle%rec%classification=line1(8:8)
 
-    tle%objectNum = int(gd(line1,2,7))
+    tle%objectID = line1(3:8)
 
     tle%ndot = gdi(line1,35,44)
     if(line1(34:34) .EQ. '-') then

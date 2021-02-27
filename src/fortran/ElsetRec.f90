@@ -2,7 +2,6 @@ MODULE ElsetRecMod
 
 TYPE ElsetRec 
     INTEGER*4 whichconst
-    INTEGER*4 satnum
     INTEGER*4 epochyr
     INTEGER*4 epochtynumrev
     INTEGER*4 error
@@ -29,6 +28,7 @@ TYPE ElsetRec
 !   // sgp4fix add new variables from tle
     CHARACTER classification
     CHARACTER*12 intldesg
+    CHARACTER*5 satID
     INTEGER*4 ephtype
     INTEGER*8 elnum
     INTEGER*8 revnum
