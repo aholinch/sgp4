@@ -12,7 +12,7 @@ package sgp4;
 public class ElsetRec 
 {
 	public int whichconst = SGP4.wgs72;
-	public int satnum;
+	public String satID; // alpha-5
 	public int epochyr;
 	public int epochtynumrev;
 	public int error;

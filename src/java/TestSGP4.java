@@ -79,7 +79,7 @@ public class TestSGP4
     
     public static class VEROUT
     {
-        public int id;
+        public String id;
         public List<VEROUTEntry> entries = null;
         
         public VEROUT()
@@ -87,7 +87,7 @@ public class TestSGP4
             
         }
         
-        public int getId()
+        public String getId()
         {
             return id;
         }
@@ -228,7 +228,7 @@ public class TestSGP4
             VEROUT v = null;
             VEROUTEntry ve = null;
             
-            Integer id = null;
+            String id = null;
             String sa[] = null;
             double x = 0;
             double y = 0;
@@ -241,7 +241,7 @@ public class TestSGP4
                 if(line.contains("xx"))
                 {
                     sa = line.split(" ");
-                    id = Integer.parseInt(sa[0]);
+                    id = sa[0].trim();
                     v = new VEROUT();
                     v.id = id;
                     entries = new ArrayList<VEROUTEntry>();
@@ -293,7 +293,7 @@ public class TestSGP4
         int size = verins.size();
         VERIN v = null;
         TLE tle = null;
-        Integer id = null;
+        String id = null;
         List<VEROUTEntry> entries = null;
         VEROUT vo = null;
         VEROUTEntry ve = null;
@@ -310,7 +310,7 @@ public class TestSGP4
             v = verins.get(i);
             tle = new TLE(v.line1,v.line2);
             vo = new VEROUT();
-            id = tle.getObjectNum();
+            id = tle.getObjectID();
             vo.id = id;
             entries = new ArrayList<VEROUTEntry>();
             vo.entries = entries;
