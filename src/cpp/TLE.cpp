@@ -44,7 +44,8 @@ void TLE::parseLines(char *line1, char *line2)
 
     this->rec.classification=line1[7];
 
-    this->objectNum = (int)gd(line1,2,7);
+    //this->objectNum = (int)gd(line1,2,7);
+    strncpy(this->objectID,&line1[2],5);
 
     this->ndot = gdi(line1,35,44);
     if(line1[33]=='-') this->ndot *= -1.0;
@@ -217,7 +218,8 @@ void setValsToRec(TLE *tle, ElsetRec *rec)
 
     rec->elnum = tle->elnum;
     rec->revnum = tle->revnum;
-    rec->satnum = tle->objectNum;
+    //rec->satnum = tle->objectNum;
+    strncpy(rec->satid,tle->objectID,5);
     rec->bstar = tle->bstar;
     rec->inclo = tle->incDeg*deg2rad;
     rec->nodeo = tle->raanDeg*deg2rad;

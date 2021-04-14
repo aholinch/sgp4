@@ -123,7 +123,7 @@ void runVER(VERIN *verins, int cnt)
             cnt2++;
             if(rdist > 1e-7 || vdist > 1e-8)
             {
-                printf("%d %lf %e %e\n",tle.objectNum,mins,rdist,vdist);
+                printf("%s %lf %e %e\n",tle.objectID,mins,rdist,vdist);
             }
         }
     }

@@ -10,7 +10,7 @@ class TLE
     char line1[70];
     char line2[70];
     char intlid[12];
-    int objectNum;
+    char objectID[6];
     long epoch;
     double ndot;
     double nddot;

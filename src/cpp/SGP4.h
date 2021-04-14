@@ -23,7 +23,7 @@
  */
 typedef struct ElsetRec {
     int whichconst;
-    int satnum;
+    char satid[6];
     int epochyr;
     int epochtynumrev;
     int error;
