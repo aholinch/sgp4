@@ -48,6 +48,8 @@ g++ -o testsgp4 TestSGP4.cpp TLE.cpp SGP4.c
 Typical errors r=6.722191e-03 mm, v=4.812040e-04 mm/s
 
 # C#
+Tested with dotnet framework on Linux.  Versions 2.1 and 5.0.  Adjust sgp4.csproj as necessary for your environment.
+
 dotnet run
 
 Typical errors	r=0.00672218292027499 mm	v=0.00481204064816902 mm/s
