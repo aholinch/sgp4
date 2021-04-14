@@ -19,7 +19,7 @@ public class TLE
     protected String line2 = null;
     
     protected String intlid = null;
-    protected int objectNum = 0;
+    protected String objectID = null;
     protected DateTime epoch;
     protected double ndot = 0;
     protected double nddot = 0;
@@ -100,14 +100,14 @@ public class TLE
         intlid = id;
     }
     
-    public int getObjectNum()
+    public String getObjectID()
     {
-        return objectNum;
+        return objectID;
     }
     
-    public void setObjectNum(int on)
+    public void setObjectID(String id)
     {
-        objectNum = on;
+        objectID = id;
     }
     
     public DateTime getEpoch()
@@ -269,8 +269,9 @@ public class TLE
         
 
         
-        objectNum = (int)gd(line1,2,7);
-        if(objectNum != (int)gd(line2,2,7))addParseError("ids don't match");
+        //objectNum = (int)gd(line1,2,7);
+        //if(objectNum != (int)gd(line2,2,7))addParseError("ids don't match");
+        objectID = line1.Substring(2,5).Trim();
         
         rec.classification = line1[7];
            //          1         2         3         4         5         6
@@ -311,7 +312,7 @@ public class TLE
 
         rec.elnum = elnum;
         rec.revnum = revnum;
-        rec.satnum = objectNum;
+        rec.satid = objectID;
         rec.bstar = bstar;
         rec.inclo = incDeg*deg2rad;
         rec.nodeo = raanDeg*deg2rad;

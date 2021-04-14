@@ -75,7 +75,7 @@ namespace sgp4
     
     public class VEROUT
     {
-        public int id;
+        public String id;
         public List<VEROUTEntry> entries = null;
         
         public VEROUT()
@@ -83,7 +83,7 @@ namespace sgp4
             
         }
         
-        public int getId()
+        public String getId()
         {
             return id;
         }
@@ -216,7 +216,7 @@ namespace sgp4
             VEROUT v = null;
             VEROUTEntry ve = null;
             
-            int id = 0;
+            String id = null;
             String []sa = null;
             double x = 0;
             double y = 0;
@@ -229,7 +229,7 @@ namespace sgp4
                 if(line.Contains("xx"))
                 {
                     sa = line.Split(" ");
-                    id = (int)Double.Parse(sa[0]);
+                    id = sa[0].Trim();
                     v = new VEROUT();
                     v.id = id;
                     entries = new List<VEROUTEntry>();
@@ -279,7 +279,7 @@ namespace sgp4
         int size = verins.Count;
         VERIN v = null;
         TLE tle = null;
-        int id = 0;
+        String id = null;
         List<VEROUTEntry> entries = null;
         VEROUT vo = null;
         VEROUTEntry ve = null;
@@ -296,7 +296,7 @@ namespace sgp4
             v = verins[i];
             tle = new TLE(v.line1,v.line2);
             vo = new VEROUT();
-            id = tle.getObjectNum();
+            id = tle.getObjectID();
             vo.id = id;
             entries = new List<VEROUTEntry>();
             vo.entries = entries;
