@@ -33,7 +33,9 @@ void parseLines(TLE *tle, char *line1, char *line2)
 
     tle->rec.classification=line1[7];
 
-    tle->objectNum = (int)gd(line1,2,7);
+    //tle->objectNum = (int)gd(line1,2,7);
+    strncpy(tle->objectID,&line1[2],5);
+    tle->objectID[5]=0;
 
     tle->ndot = gdi(line1,35,44);
     if(line1[33]=='-') tle->ndot *= -1.0;
@@ -206,7 +208,8 @@ void setValsToRec(TLE *tle, ElsetRec *rec)
 
     rec->elnum = tle->elnum;
     rec->revnum = tle->revnum;
-    rec->satnum = tle->objectNum;
+    strncpy(rec->satid,tle->objectID,5);
+    //rec->satnum = tle->objectNum;
     rec->bstar = tle->bstar;
     rec->inclo = tle->incDeg*deg2rad;
     rec->nodeo = tle->raanDeg*deg2rad;
