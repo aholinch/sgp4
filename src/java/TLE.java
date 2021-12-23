@@ -267,7 +267,7 @@ public class TLE
 
     	
     	objectID = line1.substring(2,7).trim();
-    	if(objectID != line2.substring(2,7).trim()) addParseError("ids don't match");
+    	if(!objectID.equals(line2.substring(2,7).trim())) addParseError("ids don't match");
 
         while(objectID.startsWith("0")) objectID = objectID.substring(1);
     	
