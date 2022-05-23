@@ -58,8 +58,8 @@
 *       ----------------------------------------------------------------      */
 
 
-    
-    
+
+
     /* -----------------------------------------------------------------------------
     *
     *                           procedure dpper
@@ -148,7 +148,7 @@
             sinip, sinop, sinzf, sis, sll, sls, xls,
             xnoh, zf, zm, zel, zes, znl, zns;
 
-        
+
         /* ---------------------- constants ----------------------------- */
         zns = 1.19459e-5;
         zes = 0.01675;
@@ -870,11 +870,11 @@
         int iretn;
         double delt, ft, theta, x2li, x2omi, xl, xldot, xnddt, xndt, xomi, g22, g32,
             g44, g52, g54, fasx2, fasx4, fasx6, rptim, step2, stepn, stepp;
-        
+
         xndt = 0;
         xnddt = 0;
         xldot = 0;
-        
+
         fasx2 = 0.13130908;
         fasx4 = 2.8843198;
         fasx6 = 0.37448087;
@@ -986,7 +986,7 @@
                 }
             }  // while iretn = 381
 
-            
+
             rec->nm = rec->xni + xndt * ft + xnddt * ft * ft * 0.5;
             xl = rec->xli + xldot * ft + xndt * ft * ft * 0.5;
             if (rec->irez != 1)
@@ -1065,7 +1065,7 @@
         // sgp4fix use old way of finding gst
         double ds70;
         double ts70, tfrac, c1, thgr70, fk5r, c1p2p;
-        
+
         /* ----------------------- earth constants ---------------------- */
         // sgp4fix identify constants and allow alternate values
         // only xke and j2 are used here so pass them in directly
@@ -1205,17 +1205,17 @@
     bool sgp4init ( char opsmode,ElsetRec *satrec)
     {
         /* --------------------- local variables ------------------------ */
-        
+
         double cc1sq,
             cc2, cc3, coef, coef1, cosio4,
             eeta, etasq, perige, pinvsq, psisq, qzms24,
             sfour,tc, temp, temp1, temp2, temp3, tsi, xpidot,
             xhdot1,qzms2t, ss, x2o3, r[3], v[3],
             delmotemp, qzms2ttemp, qzms24temp;
-        
-                       
+
+
         double epoch = (satrec->jdsatepoch + satrec->jdsatepochF) - 2433281.5;
-        
+
         /* ------------------------ initialization --------------------- */
         // sgp4fix divisor for divide by zero check on inclination
         // the old check used 1.0 + cos(pi-1.0e-9), but then compared it to
@@ -1281,9 +1281,9 @@
         satrec->t = 0.0;
 
         // sgp4fix remove satn as it is not needed in initl
-        
+
         initl(epoch,satrec);
-        
+
         satrec->a = pow(satrec->no_unkozai * satrec->tumin, (-2.0 / 3.0));
         satrec->alta = satrec->a * (1.0 + satrec->ecco) - 1.0;
         satrec->altp = satrec->a * (1.0 - satrec->ecco) - 1.0;
@@ -1382,15 +1382,15 @@
                 satrec->inclm = satrec->inclo;
 
                 dscom(epoch, satrec->ecco, satrec->argpo, tc, satrec->inclo, satrec->nodeo, satrec->no_unkozai,satrec);
-                
-                
+
+
                 satrec->ep=satrec->ecco;
                 satrec->inclp=satrec->inclo;
                 satrec->nodep=satrec->nodeo;
                 satrec->argpp=satrec->argpo;
                 satrec->mp=satrec->mo;
 
-                
+
                 dpper(satrec->e3, satrec->ee2, satrec->peo, satrec->pgho,
                     satrec->pho, satrec->pinco, satrec->plo, satrec->se2,
                     satrec->se3, satrec->sgh2, satrec->sgh3, satrec->sgh4,
@@ -1412,7 +1412,7 @@
                 satrec->argpm = 0.0;
                 satrec->nodem = 0.0;
                 satrec->mm = 0.0;
-                
+
                 dsinit(tc, xpidot, satrec);
             }
 
@@ -1437,8 +1437,8 @@
         /* finally propogate to zero epoch to initialize all others. */
         // sgp4fix take out check to let satellites process until they are actually below earth surface
         //       if(satrec->error == 0)
-        
-        
+
+
         sgp4(satrec, 0.0, r, v);
 
         satrec->init = 'n';
@@ -1540,7 +1540,7 @@
         double *r, double *v
         )
     {
-        
+
         double axnl, aynl, betal, cnod,
             cos2u, coseo1, cosi, cosip, cosisq, cossu, cosu,
             delm, delomg, ecose, el2, eo1,
@@ -1553,7 +1553,7 @@
             xinc, xincp, xl, xlm,
             xmdf, xmx, xmy, nodedf, xnode, tc,
             x2o3, vkmpersec, delmtemp;
-        
+
         int ktr;
 
         /* ------------------ set mathematical constants --------------- */
@@ -1589,7 +1589,7 @@
         t3 = 0;
         t4 = 0;
         mrt = 0;
-        
+
         if (satrec->isimp != 1)
         {
             delomg = satrec->omgcof * satrec->t;
@@ -1609,7 +1609,7 @@
             templ = templ + satrec->t3cof * t3 + t4 * (satrec->t4cof + satrec->t * satrec->t5cof);
         }
 
-        
+
         tc = 0;
         satrec->nm = satrec->no_unkozai;
         satrec->em = satrec->ecco;
@@ -1617,7 +1617,7 @@
         if (satrec->method == 'd')
         {
             tc = satrec->t;
-            dspace(tc,satrec);        
+            dspace(tc,satrec);
         } // if method = d
 
         if (satrec->nm <= 0.0)
@@ -1626,7 +1626,7 @@
             // sgp4fix add return
             return FALSE;
         }
-        
+
         satrec->am = pow((satrec->xke / satrec->nm), x2o3) * tempa * tempa;
         satrec->nm = satrec->xke / pow(satrec->am, 1.5);
         satrec->em = satrec->em - tempe;
@@ -1683,9 +1683,9 @@
                     satrec->sl2, satrec->sl3, satrec->sl4, satrec->t,
                     satrec->xgh2, satrec->xgh3, satrec->xgh4, satrec->xh2,
                     satrec->xh3, satrec->xi2, satrec->xi3, satrec->xl2,
-                    satrec->xl3, satrec->xl4, satrec->zmol, satrec->zmos, 
+                    satrec->xl3, satrec->xl4, satrec->zmol, satrec->zmos,
                     'n', satrec, satrec->operationmode);
-            
+
             xincp = satrec->inclp;
             if (xincp < 0.0)
             {
@@ -1893,13 +1893,6 @@
 
     }   // getgravconst
 
-    
-    double fmod(double numer, double denom)
-    {
-        long tquot = (long)floor(numer/denom);
-        return numer-tquot*denom;
-    }
-    
     /* -----------------------------------------------------------------------------
     *
     *                           function gstime
@@ -1941,7 +1934,7 @@
 
         return temp;
     }  // gstime
-    
+
     /* -----------------------------------------------------------------------------
     *
     *                           procedure jday

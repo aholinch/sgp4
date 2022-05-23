@@ -6,13 +6,13 @@
 #include "SGP4.h"
 
 // parse the double
-double gd(char *str, int ind1, int ind2);
+static double gd(char *str, int ind1, int ind2);
 
 // parse the double with implied decimal
-double gdi(char *str, int ind1, int ind2);
+static double gdi(char *str, int ind1, int ind2);
 
-void setValsToRec(TLE *tle, ElsetRec *rec);
- 
+static void setValsToRec(TLE *tle, ElsetRec *rec);
+
 void parseLines(TLE *tle, char *line1, char *line2)
 {
     int i=0;
@@ -47,7 +47,7 @@ void parseLines(TLE *tle, char *line1, char *line2)
     tle->bstar = gdi(line1,54,59);
     if(line1[53]=='-') tle->bstar *= -1.0;
     tle->bstar *= pow(10.0, gd(line1,59,61));
-        
+
     tle->elnum = (int)gd(line1,64,68);
 
     tle->incDeg = gd(line2,8,16);
@@ -71,10 +71,10 @@ bool isLeap(int year)
     {
         return FALSE;
     }
-    
+
     if(year % 100 == 0)
     {
-        if(year % 400 == 0) 
+        if(year % 400 == 0)
         {
             return TRUE;
         }
@@ -83,7 +83,7 @@ bool isLeap(int year)
             return FALSE;
         }
     }
-        
+
     return TRUE;
 }
 
@@ -98,7 +98,7 @@ long parseEpoch(ElsetRec *rec, char *str)
     tmp2[2]=0;
 
     int year = atoi(tmp2);
-        
+
     rec->epochyr=year;
     if(year > 56)
     {
@@ -108,30 +108,30 @@ long parseEpoch(ElsetRec *rec, char *str)
     {
         year += 2000;
     }
- 
+
     strncpy(tmp2,&tmp[2],3);
     tmp2[3]=0;
-       
+
     int doy = atoi(tmp2);
 
     tmp2[0]='0';
     strncpy(&tmp2[1],&tmp[5],9);
     tmp2[11]=0;
     double dfrac = strtod(tmp2,NULL);
-    double odfrac = dfrac;        
+    double odfrac = dfrac;
     rec->epochdays = doy;
     rec->epochdays += dfrac;
-        
-        
+
+
     dfrac *= 24.0;
     int hr = (int)dfrac;
     dfrac = 60.0*(dfrac - hr);
     int mn = (int)dfrac;
     dfrac = 60.0*(dfrac - mn);
     int sc = (int)dfrac;
-        
 
-        
+
+
     dfrac = 1000.0*(dfrac-sc);
     int milli = (int)dfrac;
 
@@ -139,11 +139,11 @@ long parseEpoch(ElsetRec *rec, char *str)
 
     int mon = 0;
     int day = 0;
-        
+
     // convert doy to mon, day
     int days[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
     if(isLeap(year)) days[1]=29;
-        
+
     int ind = 0;
     while(ind < 12 && doy > days[ind])
     {
@@ -219,6 +219,6 @@ void setValsToRec(TLE *tle, ElsetRec *rec)
     rec->no_kozai = tle->n/xpdotp;
     rec->ndot = tle->ndot / (xpdotp*1440.0);
     rec->nddot = tle->nddot / (xpdotp*1440.0*1440.0);
-        
+
     sgp4init('a', rec);
 }

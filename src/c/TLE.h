@@ -1,5 +1,5 @@
 #ifndef __sgp4tleheader__
-#define __sgp4tleheader__  
+#define __sgp4tleheader__
 
 #include "SGP4.h"
 
