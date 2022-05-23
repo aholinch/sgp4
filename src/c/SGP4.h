@@ -1,5 +1,5 @@
 #ifndef __sgp4header__
-#define __sgp4header__  
+#define __sgp4header__
 
 #define wgs72old 1
 #define wgs72 2
@@ -9,16 +9,20 @@
 #define twopi  (2.0*pi)
 #define deg2rad  (pi/180.0)
 
+#ifdef __STDC_VERSION__
+#include <stdbool.h>
+#else
 typedef int bool;
+#endif
 #define TRUE 1
 #define FALSE 0
 
 /**
  * This class implements the elsetrec data type from Vallado's SGP4 code.
- * 
+ *
  * From SGP4.h
  * #define SGP4Version  "SGP4 Version 2016-03-09"
- * 
+ *
  * @author aholinch
  *
  */
@@ -30,7 +34,7 @@ typedef struct ElsetRec {
     int error;
     char operationmode;
     char init;
-    char method;    
+    char method;
     double a;
     double altp;
     double alta;
@@ -47,17 +51,17 @@ typedef struct ElsetRec {
     double argpo;
     double mo;
     double no_kozai;
-    
+
     // sgp4fix add new variables from tle
     char classification;
     char intldesg[12];
     int ephtype;
     long elnum;
     long revnum;
-    
+
     // sgp4fix add unkozai'd variable
     double no_unkozai;
-    
+
     // sgp4fix add singly averaged variables
     double am;
     double em;
@@ -67,23 +71,23 @@ typedef struct ElsetRec {
     double mm;
     double nm;
     double t;
-    
+
     // sgp4fix add constant parameters to eliminate mutliple calls during execution
     double tumin;
     double mu;
     double radiusearthkm;
-    double xke; 
+    double xke;
     double j2;
     double j3;
     double j4;
     double j3oj2;
-    
-    //       Additional elements to capture relevant TLE and object information:       
+
+    //       Additional elements to capture relevant TLE and object information:
     long dia_mm; // RSO dia in mm
     double period_sec; // Period in seconds
-    char active; // "Active S/C" flag (0=n, 1=y) 
-    char not_orbital; // "Orbiting S/C" flag (0=n, 1=y)  
-    double rcs_m2; // "RCS (m^2)" storage  
+    char active; // "Active S/C" flag (0=n, 1=y)
+    char not_orbital; // "Orbiting S/C" flag (0=n, 1=y)
+    double rcs_m2; // "RCS (m^2)" storage
 
     // temporary variables because the original authors call the same method with different variables
     double ep;
@@ -185,14 +189,14 @@ typedef struct ElsetRec {
     double day;
     double emsq;
     double gam;
-    double rtemsq; 
+    double rtemsq;
     double s1;
     double s2;
     double s3;
     double s4;
     double s5;
     double s6;
-    double s7; 
+    double s7;
     double ss1;
     double ss2;
     double ss3;
@@ -229,7 +233,7 @@ typedef struct ElsetRec {
     double nodem;
     double dndt;
     double eccsq;
-        
+
     // for initl
     double ainv;
     double ao;
@@ -271,7 +275,5 @@ void getgravconst(int whichconst, ElsetRec *rec);
 double gstime(double jdut1);
 
 void jday(int year, int mon, int day, int hr, int minute, double sec, double *jd, double *jdfrac);
-
-double fmod(double numer, double denom);
 
 #endif
