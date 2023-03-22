@@ -243,10 +243,16 @@
                 if ((rec->nodep < 0.0) && (opsmode == 'a'))
                     rec->nodep = rec->nodep + twopi;
                 if (fabs(xnoh - rec->nodep) > pi)
+                {
                     if (rec->nodep < xnoh)
+                    {
                         rec->nodep = rec->nodep + twopi;
+                    }
                     else
+                    {
                         rec->nodep = rec->nodep - twopi;
+                    }
+                }
                 rec->mp = rec->mp + pl;
                 rec->argpp = xls - rec->mp - cosip * rec->nodep;
             }
