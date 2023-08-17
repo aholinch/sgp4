@@ -1,3 +1,6 @@
+## No pull requests please
+Sorry, but the license for this project is the "Unlicense" and it does not provide any protection for contributors.  You deserve credit and protection for the work you do, but this license won't provide that.  I chose this license because I do not own the original code.  The original authors who published it did so by fixing several problems in a US Government standard.  They also provided amazing test cases to demonstrate their fixes.  My unique contributions are porting the code to multiple languages including support for running their test cases. If you want to make changes, feel free to fork the project and put your own license on it.  However, this project is not setup for collaboration. 
+
 # SGP4
 SGP4 stands for Simplified General Perturbations 4 and is arguably the most widely used propagator for simulating earth satellite orbits.
 This module is my personal project to produce implementations in multiple languages.  There is an official government document released decades
