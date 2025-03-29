@@ -9,7 +9,7 @@
 #
 class ElsetRec
   attr_accessor :whichconst
-  attr_accessor :satnum 
+  attr_accessor :satid
   attr_accessor :epochyr
   attr_accessor :epochtynumrev 
   attr_accessor :error 
@@ -212,7 +212,7 @@ class ElsetRec
 
   def initialize
     @whichconst = 2    #SGP4.wgs72
-    @satnum = 0
+    @satid = '0' 
     @epochyr = 0
     @epochtynumrev = 0
     @error = 0

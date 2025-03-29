@@ -13,7 +13,7 @@ class TLE
   attr_accessor :line1
   attr_accessor :line2
   attr_accessor :intlid
-  attr_accessor :objectNum
+  attr_accessor :objectID
   attr_accessor :epoch
   attr_accessor :ndot
   attr_accessor :nddot
@@ -35,7 +35,7 @@ class TLE
     @line1 = nil
     @line2 = nil
     @intlid = nil
-    @objectNum = 0
+    @objectID = 0
     @epoch = nil
     @ndot = 0
     @nddot = 0
@@ -87,7 +87,7 @@ class TLE
     @line1 = line1
     @line2 = line2
       
-    @objectNum = gd(line1,2,7).round()
+    @objectID = line1[2..7].strip
   
     @rec.classification = line1[7]
       #     //          1         2         3         4         5         6
@@ -130,7 +130,7 @@ class TLE
 
     @rec.elnum = @elnum
     @rec.revnum = @revnum
-    @rec.satnum = @objectNum
+    @rec.satid = @objectID
     @rec.bstar = @bstar
     @rec.inclo = @incDeg*deg2rad
     @rec.nodeo = @raanDeg*deg2rad

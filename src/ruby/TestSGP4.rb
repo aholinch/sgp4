@@ -27,7 +27,7 @@ def checkRV(tle,entry,lastrv)
     end
 
     if(rdist > 1.2e-7 or vdist > 1e-8)
-        puts "Error #{tle.objectNum} #{min} #{rdist} #{vdist} #{tle.sgp4Error}"
+        puts "Error #{tle.objectID} #{min} #{rdist} #{vdist} #{tle.sgp4Error}"
     end
 
     $cnt = $cnt+1
