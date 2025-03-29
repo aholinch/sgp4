@@ -15,7 +15,7 @@ class TLE:
     self.line2 = None
     
     self.intlid = None
-    self.objectNum = 0
+    self.objectID = None
     self.epoch = None
     self.ndot = 0
     self.nddot = 0
@@ -67,7 +67,7 @@ class TLE:
     self.line1 = line1
     self.line2 = line2
       
-    self.objectNum = int(gd(line1,2,7))
+    self.objectID = line1[2:7].strip()
   
     self.rec.classification = line1[7]
       #     //          1         2         3         4         5         6
@@ -110,7 +110,7 @@ class TLE:
 
     self.rec.elnum = self.elnum
     self.rec.revnum = self.revnum
-    self.rec.satnum = self.objectNum
+    self.rec.satid = self.objectID
     self.rec.bstar = self.bstar
     self.rec.inclo = self.incDeg*deg2rad
     self.rec.nodeo = self.raanDeg*deg2rad

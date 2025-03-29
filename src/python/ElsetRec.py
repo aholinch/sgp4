@@ -11,7 +11,7 @@ class ElsetRec:
   def __init__(self):
 
     self.whichconst = 2    #SGP4.wgs72
-    self.satnum = 0
+    self.satid = None
     self.epochyr = 0
     self.epochtynumrev = 0
     self.error = 0
