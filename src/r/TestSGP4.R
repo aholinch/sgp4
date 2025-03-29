@@ -55,7 +55,12 @@ for(i in 1:len)
     {
         tle = TLE()
         tle$parseLines(line1,line2)
-        key = as.character(tle$objectNum)
+        key = tle$objectID
+        tles[key] = tle
+        while(startsWith(key,"0"))
+        {
+            key = substr(key,2,nchar(key))
+        }
         tles[key] = tle
     }
 }

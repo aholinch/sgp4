@@ -1,6 +1,6 @@
 ElsetRec <- setRefClass("ElsetRec", fields = list(
     whichconst = "numeric",
-    satnum = "numeric",
+    satid = "character",
     epochyr = "numeric",
     epochtynumrev = "numeric",
     error = "numeric",
@@ -205,7 +205,7 @@ ElsetRec <- setRefClass("ElsetRec", fields = list(
 methods = list(
     initVals = function(){
     whichconst <<- 2 
-    satnum <<- 0
+    satnum <<- "0"
     epochyr <<- 0
     epochtynumrev <<- 0
     error <<- 0

@@ -7,7 +7,7 @@ TLE <- setRefClass("TLE", fields=list(
     line1 = "character",
     line2 = "character",
     intlid = "character",
-    objectNum = "integer",
+    objectID = "character",
     epoch = "numeric",
     ndot = "numeric",
     nddot = "numeric",
@@ -48,7 +48,7 @@ methods = list(
 
         rec$classification <<-substr(line1,8,8) 
         rec$whichconst <<- wgs72
-        objectNum <<- as.integer(gd(line1,3,7))
+        objectID <<- trimws(substr(line1,3,7))
         intlid <<- trimws(substr(line1,10,18))
         ndot <<- gdi(substr(line1,34,34),line1,36,43)
         nddot <<- gdi(substr(line1,45,45),line1,46,50)
@@ -130,7 +130,7 @@ methods = list(
 
         rec$elnum <<- elnum
         rec$revnum <<- revnum
-        rec$satnum <<- objectNum
+        rec$satid <<- objectID
         rec$bstar <<- bstar
         rec$inclo <<- incDeg*deg2rad
         rec$nodeo <<- raanDeg*deg2rad
