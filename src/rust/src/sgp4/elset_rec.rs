@@ -10,7 +10,7 @@
 pub struct ElsetRec {
 
     pub whichconst: i32,
-    pub satnum: i32,
+    pub satid: String,
     pub epochyr: i32,
     pub epochtynumrev: i32,
     pub error: i32,

@@ -17,7 +17,7 @@ pub struct TLE {
     pub line1: String,
     pub line2: String,
     pub intlid: String,
-    pub object_num: i32,
+    pub object_id: String,
     pub epoch:  DateTime<Utc>,
 
     pub ndot: f64,
@@ -78,7 +78,7 @@ impl Default for TLE {
         line1: "".to_string(),
         line2: "".to_string(),
         intlid: "".to_string(),
-        object_num: 0,
+        object_id: "".to_string(),
         epoch: Utc::now(),
         ndot: 0.0,
         nddot: 0.0,
@@ -120,7 +120,8 @@ impl TLE {
         self.line2 = line2.clone();
 
         let l1int = line1.clone();
-        self.object_num = gd(&line1,2,7) as i32;
+        //self.object_num = gd(&line1,2,7) as i32;
+        self.object_id = substr(&line1,2,7).trim().to_string();
         rec.classification = l1int.chars().nth(7).unwrap();
         //                 1         2         3         4         5         6
         //       0123456789012345678901234567890123456789012345678901234567890123456789
@@ -158,7 +159,7 @@ impl TLE {
 
         self.rec.elnum = self.elnum;
         self.rec.revnum = self.revnum;
-        self.rec.satnum = self.object_num;
+        self.rec.satid = self.object_id.clone();
         self.rec.bstar = self.bstar;
         self.rec.inclo = self.inc_deg*deg2rad;
         self.rec.nodeo = self.raan_deg*deg2rad;

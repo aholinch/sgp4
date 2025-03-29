@@ -70,7 +70,7 @@ fn main() {
               rdist = dist(&r,&vr);
               vdist = dist(&v,&vv);
 
-              if tle.object_num == 33334
+              if tle.object_id == "33334"
               {
                   rdist = 0.0;
                   vdist = 0.0;
@@ -82,7 +82,7 @@ fn main() {
 
               if rdist > 1e-7 || vdist > 1e-8
               {
-                  println!("{}\t{}\t{}\t{}",tle.object_num,mins,rdist,vdist);
+                  println!("{}\t{}\t{}\t{}",tle.object_id,mins,rdist,vdist);
               }
 
           }
