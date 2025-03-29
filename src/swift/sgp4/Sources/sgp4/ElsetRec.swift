@@ -8,7 +8,7 @@
 struct ElsetRec {
 
     var whichconst: Int32 = Int32(SGP4.WGS72);
-    var satnum: Int32 = 0
+    var satid: String = "0" 
     var epochyr: Int32 = 0
     var epochtynumrev: Int32 = 0
     var error: Int32 = 0

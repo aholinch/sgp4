@@ -9,7 +9,7 @@ class TLE {
     var line1: String = ""
     var line2: String = ""
     var intlid: String = ""
-    var objectNum: Int32 = 0
+    var objectID: String = "" 
     var epoch: Date = Date()
 
     var ndot: Double = 0
@@ -38,7 +38,7 @@ class TLE {
         line2 = line2Str
 
         // line1
-        objectNum = Int32(gd(line1,2,7))
+        objectID = trim(substr(line1,2,7))
         elnum = Int64(gd(line1,64,68))
         intlid = trim(substr(line1,9,17))
         rec.classification = Character(trim(substr(line1,7,8)))
@@ -77,7 +77,7 @@ class TLE {
 
         rec.elnum = elnum;
         rec.revnum = revnum;
-        rec.satnum = objectNum;
+        rec.satid = objectID;
         rec.intldesg = intlid;
         rec.bstar = bstar;
         rec.inclo = inc_deg*deg2rad;

@@ -102,7 +102,7 @@ do {
             rdist = dist(r,vr)
             vdist = dist(v,vv)
 
-            if(tle.objectNum == 33334)
+            if(tle.objectID == "33334")
             {
                 rdist = 0.0
                 vdist = 0.0
@@ -114,7 +114,7 @@ do {
 
             if( (rdist > 1e-7) || (vdist > 1e-8))
             {
-                print("\(tle.objectNum)\t\(mins)\t\(rdist)\t\(vdist)")
+                print("\(tle.objectID)\t\(mins)\t\(rdist)\t\(vdist)")
             }
 
         }
