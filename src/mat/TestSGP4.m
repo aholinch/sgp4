@@ -33,7 +33,8 @@ end
 
 fclose(fid);
 
-curobj = 0;
+curobj = '0';
+foundone = 0;
 strind = 0;
 ind = 0;
 prevrv = 0;
@@ -44,21 +45,22 @@ line1 = fgetl(fid);
 cnt = 0;
 rerr = 0;
 verr = 0;
+
 while ischar(line1)
     strind = strfind(line1,'xx'); 
+
     if(strind > 0)
         %% get object number
-        curobj = str2double(strtrim(line1(1:strind-1)));
+        curobj = strtrim(line1(1:strind-1));
 
         %% find tle with matching object number
         ind = 1;
-        while(ind <= tlecnt && tles{ind}.objectNum ~= curobj)
+        while(ind <= tlecnt && !strcmp(tles{ind}.objectID,curobj))
             ind = ind+1;
         end
         tle = tles{ind};
-
-    elseif(curobj > 0)
-
+        foundone = 1;
+    elseif(foundone > 0)
         %% get RV for specified number of minutes
         verout = sscanf(line1,'%f');
         rv = tle.getRV(verout(1));

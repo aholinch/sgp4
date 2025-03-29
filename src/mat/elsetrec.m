@@ -8,7 +8,7 @@
 classdef elsetrec < handle
   properties
     whichconst = SGP4.wgs72;
-    satnum = 0;
+    satid = '0';
     epochyr = 0;
     epochtynumrev = 0;
     error = 0;

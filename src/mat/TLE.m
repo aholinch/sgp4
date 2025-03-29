@@ -9,7 +9,7 @@ classdef TLE < handle
     line2 = '';
     
     intlid = '';
-    objectNum = 0;
+    objectID = '';
     epoch = 0;
     ndot = 0;
     nddot = 0;
@@ -39,7 +39,10 @@ classdef TLE < handle
         line1 = l1;
         line2 = l2;
 
-        this.objectNum = str2num(line1(3:7));
+        this.objectID = strtrim(line1(3:7));
+        while(this.objectID(1)=="0")
+            this.objectID = this.objectID(2:length(this.objectID));
+        end
 
         this.intlid = strtrim(line1(10:18));
         tmp = line1(34:43);
@@ -97,7 +100,7 @@ classdef TLE < handle
 
         this.rec.elnum = this.elnum;
         this.rec.revnum = this.revnum;
-        this.rec.satnum = this.objectNum;
+        this.rec.satid = this.objectID;
         this.rec.bstar = this.bstar;
         this.rec.inclo = this.incDeg*deg2rad;
         this.rec.nodeo = this.raanDeg*deg2rad;
