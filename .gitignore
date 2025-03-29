@@ -14,3 +14,4 @@ src/charp/obj
 src/charp/bin
 src/rust/Cargo.lock
 src/rust/target
+src/r/.RData
