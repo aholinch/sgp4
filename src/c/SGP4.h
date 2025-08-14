@@ -1,6 +1,10 @@
 #ifndef __sgp4header__
 #define __sgp4header__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define wgs72old 1
 #define wgs72 2
 #define wgs84 3
@@ -9,11 +13,7 @@
 #define twopi  (2.0*pi)
 #define deg2rad  (pi/180.0)
 
-#ifdef __STDC_VERSION__
 #include <stdbool.h>
-#else
-typedef int bool;
-#endif
 #define TRUE 1
 #define FALSE 0
 
@@ -275,5 +275,9 @@ void getgravconst(int whichconst, ElsetRec *rec);
 double gstime(double jdut1);
 
 void jday(int year, int mon, int day, int hr, int minute, double sec, double *jd, double *jdfrac);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
