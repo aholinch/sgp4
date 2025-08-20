@@ -2,6 +2,9 @@
 #define __sgp4tleheader__
 
 #include "SGP4.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
 typedef struct TLE {
@@ -32,5 +35,9 @@ long parseEpoch(ElsetRec *rec, char *str);
 void getRVForDate(TLE *tle, long millisSince1970, double r[3], double v[3]);
 
 void getRV(TLE *tle, double minutesAfterEpoch, double r[3], double v[3]);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
