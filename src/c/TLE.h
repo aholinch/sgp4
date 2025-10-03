@@ -2,6 +2,7 @@
 #define __sgp4tleheader__
 
 #include "SGP4.h"
+#include <stdint.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -13,26 +14,26 @@ typedef struct TLE {
     char line2[70];
     char intlid[12];
     char objectID[6];
-    long epoch;
+    int64_t epoch;
     double ndot;
     double nddot;
     double bstar;
-    int elnum;
+    int32_t elnum;
     double incDeg;
     double raanDeg;
     double ecc;
     double argpDeg;
     double maDeg;
     double n;
-    int revnum;
-    int sgp4Error;
+    int32_t revnum;
+    int32_t sgp4Error;
 } TLE;
 
 void parseLines(TLE *tle, char *line1, char *line2);
 
-long parseEpoch(ElsetRec *rec, char *str);
+int64_t parseEpoch(ElsetRec *rec, char *str);
 
-void getRVForDate(TLE *tle, long millisSince1970, double r[3], double v[3]);
+void getRVForDate(TLE *tle, int64_t millisSince1970, double r[3], double v[3]);
 
 void getRV(TLE *tle, double minutesAfterEpoch, double r[3], double v[3]);
 

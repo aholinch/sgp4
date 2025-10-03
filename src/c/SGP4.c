@@ -346,7 +346,7 @@
         const double zsings = -0.98088458;
 
         /* --------------------- local variables ------------------------ */
-        int lsflg;
+        int32_t lsflg;
         double a1, a2, a3, a4, a5, a6, a7,
             a8, a9, a10, betasq, cc, ctem, stem,
             x1, x2, x3, x4, x5, x6, x7,
@@ -873,7 +873,7 @@
 
     void dspace(double tc, ElsetRec *rec)
     {
-        int iretn;
+        int32_t iretn;
         double delt, ft, theta, x2li, x2omi, xl, xldot, xnddt, xndt, xomi, g22, g32,
             g44, g52, g54, fasx2, fasx4, fasx6, rptim, step2, stepn, stepp;
 
@@ -1560,7 +1560,7 @@
             xmdf, xmx, xmy, nodedf, xnode, tc,
             x2o3, vkmpersec, delmtemp;
 
-        int ktr;
+        int32_t ktr;
 
         /* ------------------ set mathematical constants --------------- */
         // sgp4fix divisor for divide by zero check on inclination
@@ -1856,7 +1856,7 @@
     *    vallado, crawford, hujsak, kelso  2006
     --------------------------------------------------------------------------- */
 
-    void getgravconst(int whichconst, ElsetRec *rec)
+    void getgravconst(int32_t whichconst, ElsetRec *rec)
     {
         rec->whichconst = whichconst;
         switch (whichconst)
@@ -1974,7 +1974,7 @@
     *    vallado       2013, 183, alg 14, ex 3-4
     * --------------------------------------------------------------------------- */
 
-    void jday(int year, int mon, int day, int hr, int minute, double sec, double *jd, double *jdfrac)
+    void jday(int32_t year, int32_t mon, int32_t day, int32_t hr, int32_t minute, double sec, double *jd, double *jdfrac)
     {
 
         *jd = 367.0 * year -
